@@ -1,0 +1,28 @@
+general.import = ["~/.config/omarchy/current/theme/alacritty.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }
+bold = { family = "JetBrainsMono Nerd Font" }
+italic = { family = "JetBrainsMono Nerd Font" }
+size = 9
+
+[window]
+padding.x = 14
+padding.y = 14
+decorations = "None"
+
+[keyboard]
+bindings = [
+  { key = "Insert", mods = "Shift", action = "Paste" },
+  { key = "Insert", mods = "Control", action = "Copy" },
+  { key = "ArrowUp", mods = "Shift", action = "ScrollLineUp" },
+  { key = "ArrowDown", mods = "Shift", action = "ScrollLineDown" },
+  { key = "Ä", mods = "Control", action = "ToggleViMode" },
+  # Rebind "C-ö" to "M-ö" so i can use "C-ö" as tmux leader
+  # I changed to Ghostty which allows me to directly use "C-ö" as the tmux 
+  # leader so i dont need to fuzz around with stuff like this
+  # { key = "Ö", mods = "Control", chars = "\u001bö" },
+]
