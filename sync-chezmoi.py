@@ -127,7 +127,7 @@ def main():
     # 4. Run Chezmoi
     if final_list:
         print(f"Adding {len(final_list)} files to chezmoi...")
-        cmd = ["chezmoi", "add"] + final_list
+        cmd = ["/opt/homebrew/bin/chezmoi", "apply"] + final_list
         subprocess.run(cmd)
         print("Done.")
     else:

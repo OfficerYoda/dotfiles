@@ -1,7 +1,11 @@
-#!/usr/bin/env fish
+#!/opt/homebrew/bin/fish
 
-echo "Syncing dotfiles with  chezmoi..."
-./sync-chezmoi.py
+set SCRIPT_DIR /Users/I767799/.local/share/chezmoi
+set PYTHON /Users/I767799/.local/share/mise/installs/python/3.11.14/bin/python3
+set FISH /opt/homebrew/bin/fish
+
+echo "Syncing dotfiles with chezmoi..."
+$PYTHON $SCRIPT_DIR/sync-chezmoi.py
 
 echo "Syncing dotfiles with github..."
-./sync-github.fish
+$FISH $SCRIPT_DIR/sync-github.fish
