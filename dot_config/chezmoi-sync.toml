@@ -13,6 +13,7 @@ directories = [
   "karabiner",
   "waybar",
   "btop",
+  "opencode",
 ]
 
 # Specific files to sync (relative to root, or absolute)
@@ -30,4 +31,8 @@ patterns = [
   "waybar/*.bak.*",
   "btop/themes",
   ".DS_Store",
+  "opencode/node_modules"
+  "opencode/bun.lock"
+  "opencode/package.json"
+  "opencode/.gitignore"
 ]
