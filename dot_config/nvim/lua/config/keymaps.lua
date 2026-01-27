@@ -181,3 +181,17 @@ map("i", "_)", "₎", { desc = "Subscript )" })
 -- map("i", "_e", "ₑ", { desc = "Subscript e" })
 -- map("i", "_o", "ₒ", { desc = "Subscript o" })
 map("i", "_x", "ₓ", { desc = "Subscript x" })
+
+map("n", "<leader>rj", function()
+  Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
+    win = { position = "bottom" },
+    desc = "Run Java",
+  })
+end, { desc = "Run Java" })
+
+map("n", "<leader>rp", function()
+  Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
+    win = { position = "bottom" },
+    desc = "Run Prolog",
+  })
+end, { desc = "Run Prolog" })
