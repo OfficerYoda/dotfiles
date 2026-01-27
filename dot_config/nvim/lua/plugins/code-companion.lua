@@ -1,0 +1,28 @@
+return {
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    -- Load only when you use these commands
+    cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
+    opts = {
+      strategies = {
+        chat = { adapter = "ollama" },
+        inline = { adapter = "ollama" },
+      },
+      adapters = {
+        ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            schema = {
+              model = {
+                default = "qwen3-coder:30b",
+              },
+            },
+          })
+        end,
+      },
+    },
+  },
+}
