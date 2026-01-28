@@ -1,6 +1,10 @@
 return {
   "L3MON4D3/LuaSnip",
-  opts = function()
+  -- This prevents LuaSnip from loading until you enter Insert mode
+  event = "InsertEnter",
+  config = function(_, opts)
+    -- Run the default LazyVim setup first
+    require("luasnip").setup(opts)
     local ls = require("luasnip")
     local f = ls.function_node
     local postfix = require("luasnip.extras.postfix").postfix
