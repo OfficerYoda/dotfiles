@@ -14,6 +14,7 @@ directories = [
   "waybar",
   "btop",
   "opencode",
+  "aerospace"
 ]
 
 # Specific files to sync (relative to root, or absolute)
