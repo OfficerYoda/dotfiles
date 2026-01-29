@@ -1,7 +1,10 @@
 # Enable vi key bindings in the command line
 fish_vi_key_bindings
 
-# --- 1. ENVIRONMENT VARIABLES (from envs) ---
+# Disable the greeting message
+set -g fish_greeting
+
+# --- 1. ENVIRONMENT VARIABLES ---
 
 # In Fish, 'set -x' is used for exported environment variables.
 # You need to manually manage the EDITOR variable for SUDO_EDITOR.
@@ -11,7 +14,7 @@ end
 set -x SUDO_EDITOR "$EDITOR"
 set -x BAT_THEME ansi
 
-# --- 2. INITIALIZATION (from init) ---
+# --- 2. INITIALIZATION ---
 
 # Use 'status is-interactive' to check if the shell is interactive.
 if status is-interactive
@@ -71,17 +74,7 @@ if status is-interactive
     set -g fish_escape_delay_ms 10
 end
 
-# --- OS specific settings ---
-
-if test (uname) = Darwin # Darwin = macOS
-    # --- macOS settings
-else
-    # --- Linux settings
-    # So that wl-copy/wl-paste work correctly
-    set -gx WAYLAND_DISPLAY wayland-1
-end
-
-# --- 4. KEYBINDINGS (from inputrc) ---
+# --- 4. KEYBINDINGS ---
 
 abbr --add .. "cd .."
 abbr --add ... "cd ../.."
@@ -100,8 +93,6 @@ alias decompress "tar -xzf"
 
 bind \cf _tmux-project-opener
 bind \cg _tmux-session-switcher
-
-# bind \t smart-tab
 
 # Created by `pipx` on 2025-12-25 03:06:32
 # Modified ym `OfficerYoda` on 2026-01-06 00:57:53
