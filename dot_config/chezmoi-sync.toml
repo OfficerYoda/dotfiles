@@ -9,18 +9,15 @@ directories = [
   "tmux",
   "ghostty",
   "keyd",
-  "karabiner",
   "waybar",
   "btop",
-  "opencode",
-  "aerospace"
 ]
 
 # Specific files to sync (relative to root, or absolute)
 files = ["./chezmoi-sync.toml", "./README.md", "./sync.fish"]
 
 [ignore]
-patterns = [,
+patterns = [
   "nvim/lazy-lock.json",
   "nvim/lua/plugins/theme.lua",
   "nvim/spell",
@@ -31,8 +28,4 @@ patterns = [,
   "waybar/*.bak.*",
   "btop/themes",
   ".DS_Store",
-  "opencode/node_modules",
-  "opencode/bun.lock",
-  "opencode/package.json",
-  "opencode/.gitignore",
 ]
