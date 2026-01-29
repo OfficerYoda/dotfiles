@@ -26,7 +26,7 @@ return {
       require("image").setup({
         kitty_method = "normal",
         backend = "kitty",
-        processor = "magick_cli", -- or "magick_rock"
+        processor = "magick_cli",
         integrations = {
           markdown = {
             enabled = true,
