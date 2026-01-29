@@ -27,5 +27,9 @@ patterns = [
   "tmux/plugins",
   "waybar/*.bak.*",
   "btop/themes",
-  ".DS_Store",
+  ".DS_Store", 
+  "opencode/node_modules",
+  "opencode/bun.lock",
+  "opencode/package.json",
+  "opencode/.gitignore",
 ]
