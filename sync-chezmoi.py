@@ -126,16 +126,23 @@ def main():
             final_list.append(file_path)
 
     # 4. Run Chezmoi
+
+    if platform.system() == "Darwin":
+        chezmoi_location = "/opt/homebrew/bin/chezmoi"
+    else:
+        chezmoi_location = "/usr/bin/chezmoi"
     if final_list:
         print(f"Adding {len(final_list)} files to chezmoi...")
         if platform.system() == "Darwin":
-            cmd = ["/opt/homebrew/bin/chezmoi", "add"] + final_list
+            cmd = [chezmoi_location, "add"] + final_list
         else:
-            cmd = ["/usr/bin/chezmoi", "add"] + final_list
+            cmd = [chezmoi_location, "add"] + final_list
         subprocess.run(cmd)
         print("Done.")
     else:
         print("No files found to add.")
+
+    subprocess.run([chezmoi_location, "apply", "--force"])
 
 
 if __name__ == "__main__":
