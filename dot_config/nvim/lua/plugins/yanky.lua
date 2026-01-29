@@ -3,10 +3,12 @@ return {
   keys = {
     { "<leader>p", false }, -- Disable default binding
     {
-      "<leader>p",
+      "<leader>y",
       function()
         if LazyVim.pick.picker.name == "telescope" then
           require("telescope").extensions.yank_history.yank_history({})
+        elseif LazyVim.pick.picker.name == "snacks" then
+          Snacks.picker.yanky()
         else
           vim.cmd([[YankyRingHistory]])
         end
