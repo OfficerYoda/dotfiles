@@ -137,6 +137,7 @@ def main():
             cmd = [chezmoi_location, "add"] + final_list
         else:
             cmd = [chezmoi_location, "add"] + final_list
+        print(cmd)
         subprocess.run(cmd)
         print("Done.")
     else:
