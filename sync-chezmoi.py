@@ -3,6 +3,7 @@ import os
 import subprocess
 import sys
 import fnmatch
+import platform
 
 # Configuration
 CONFIG_FILE = os.path.expanduser("~/.config/chezmoi-sync.toml")
@@ -127,7 +128,10 @@ def main():
     # 4. Run Chezmoi
     if final_list:
         print(f"Adding {len(final_list)} files to chezmoi...")
-        cmd = ["/opt/homebrew/bin/chezmoi", "add"] + final_list
+        if platform.system() == "Darwin":
+            cmd = ["/opt/homebrew/bin/chezmoi", "add"] + final_list
+        else:
+            cmd = ["/usr/bin/chezmoi", "add"] + final_list
         subprocess.run(cmd)
         print("Done.")
     else:

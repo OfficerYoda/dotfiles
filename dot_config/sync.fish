@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# # Define the path to your dotfiles repo.
+# Define the path to your dotfiles repo.
 # set -l DOTFILES_DIR "$HOME/.config"
 #
 # echo "Starting dotfiles sync..."

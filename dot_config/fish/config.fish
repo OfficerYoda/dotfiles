@@ -1,6 +1,13 @@
 # Enable vi key bindings in the command line
 fish_vi_key_bindings
 
+# Enables fzf keygindings:
+# CTRL+R: fzf on files : Pastes the selected file/directory path onto the comman line.
+# CTRL+T: fzf on history : Fuzzy searches the command history and pastes the selected command.
+# ALT+C : fzf on directories :  Fuzzy searches directories and executes cd to the selection.
+#fzf_key_bindings
+fzf --fish | source
+
 # --- 1. ENVIRONMENT VARIABLES (from envs) ---
 
 # In Fish, 'set -x' is used for exported environment variables.
@@ -15,14 +22,6 @@ set -x BAT_THEME ansi
 
 # Use 'status is-interactive' to check if the shell is interactive.
 if status is-interactive
-    # Enables fzf keygindings:
-    # CTRL+R: fzf on files : Pastes the selected file/directory path onto the comman line.
-    # CTRL+T: fzf on history : Fuzzy searches the command history and pastes the selected command.
-    # ALT+C : fzf on directories :  Fuzzy searches directories and executes cd to the selection.
-    #fzf_key_bindings
-    if command -v fzf >/dev/null
-        fzf --fish | source
-    end
 
     # Mise (formerly asdf) initialization
     if command -v mise >/dev/null

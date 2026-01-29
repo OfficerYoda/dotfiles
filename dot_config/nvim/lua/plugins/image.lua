@@ -1,11 +1,11 @@
 return {
-  -- {
-  --   "vhyrro/luarocks.nvim",
-  --   priority = 1001, -- this plugin needs to run before anything else
-  --   opts = {
-  --     rocks = { "magick" },
-  --   },
-  -- },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1001, -- this plugin needs to run before anything else
+    opts = {
+      rocks = { "magick" },
+    },
+  },
   {
     "3rd/image.nvim",
     event = "VeryLazy",
@@ -26,7 +26,6 @@ return {
       require("image").setup({
         kitty_method = "normal",
         backend = "kitty",
-        processor = "magick_cli", -- or "magick_rock"
         integrations = {
           markdown = {
             enabled = true,
