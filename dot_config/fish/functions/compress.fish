@@ -5,14 +5,9 @@ function compress
     end
 
     set target (string replace -r '/$' '' "$argv[1]")
-
-    set size_kb (du -sk "$target" | cut -f1)
-    set size_bytes (math "$size_kb * 1024")
-
-    set compressor gzip
-    if command -v pigz >/dev/null
-        set compressor pigz
+    if type -q pigz
+        tar -cf - "$target" | pv -s (du -sb "$target" | awk '{print $1}') | pigz >"$target.tar.gz"
+    else
+        tar -cf - "$target" | pv -s (du -sb "$target" | awk '{print $1}') | gzip >"$target.tar.gz"
     end
-
-    tar -cf - "$target" | pv -s $size_bytes | $compressor >"$target.tar.gz"
 end
