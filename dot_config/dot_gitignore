@@ -17,6 +17,7 @@
 !.gitignore
 !README.md
 !sync.fish
+!chezmoi-sync.toml
 
 # But keep these ignored
 nvim/lazy-lock.json

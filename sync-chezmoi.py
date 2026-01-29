@@ -137,13 +137,14 @@ def main():
             cmd = [chezmoi_location, "add"] + final_list
         else:
             cmd = [chezmoi_location, "add"] + final_list
-        print(cmd)
         subprocess.run(cmd)
         print("Done.")
     else:
         print("No files found to add.")
 
+    print("Applying (forced) chezmoi changes")
     subprocess.run([chezmoi_location, "apply", "--force"])
+    print("Done.")
 
 
 if __name__ == "__main__":
