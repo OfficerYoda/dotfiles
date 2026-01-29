@@ -1,0 +1,35 @@
+root = "~/.config"
+
+[include]
+# Folders to sync recursively
+directories = [
+  "fish",
+  "nvim",
+  "hypr",
+  "tmux",
+  "ghostty",
+  "keyd",
+  "waybar",
+  "btop",
+]
+
+# Specific files to sync (relative to root, or absolute)
+files = ["./chezmoi-sync.toml", "./README.md", "./sync.fish"]
+
+[ignore]
+patterns = [
+  "nvim/lazy-lock.json",
+  "nvim/lua/plugins/theme.lua",
+  "nvim/spell",
+  "fish/fish_variables",
+  "karabiner/automatic_backups",
+  "ghostty/mac-overrides",
+  "tmux/plugins",
+  "waybar/*.bak.*",
+  "btop/themes",
+  ".DS_Store", 
+  "opencode/node_modules",
+  "opencode/bun.lock",
+  "opencode/package.json",
+  "opencode/.gitignore",
+]
