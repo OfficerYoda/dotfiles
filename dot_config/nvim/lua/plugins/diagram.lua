@@ -4,6 +4,7 @@ return {
     dependencies = {
       { "3rd/image.nvim" },
     },
+    ft = { "markdown", "mermaid" },
     opts = {},
   },
 }
