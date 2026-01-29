@@ -195,3 +195,10 @@ map("n", "<leader>rp", function()
     desc = "Run Prolog",
   })
 end, { desc = "Run Prolog" })
+
+map("n", "<leader>rg", function()
+  Snacks.terminal.open("go run " .. vim.fn.expand("%") .. " && read", {
+    win = { position = "bottom" },
+    desc = "Run Go",
+  })
+end, { desc = "Run Go" })
