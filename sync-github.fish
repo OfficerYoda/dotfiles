@@ -1,4 +1,4 @@
-#!/opt/homebrew/bin/fish
+#!/usr/bin/env fish
 
 # Define the path to chezmoi dotfiles repo.
 set -l DOTFILES_DIR "$HOME/.local/share/chezmoi"
