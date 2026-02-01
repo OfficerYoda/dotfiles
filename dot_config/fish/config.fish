@@ -91,8 +91,6 @@ abbr tmls "tmux ls"
 
 alias decompress "tar -xzf"
 
-alias quick-scripts "fd . ~/.local/bin --max-depth 1 --type f --type l --extension fish --exec basename | fzf --no-preview | xargs -I {} fish ~/.local/bin/{}"
-
 bind \cf _tmux-project-opener
 bind \cg _tmux-session-switcher
 
