@@ -14,7 +14,7 @@ function _tmux-project-opener
         fd -L --min-depth 1 --max-depth 1 --type d . $home_path
         fd -L --min-depth 1 --max-depth 2 --type d . $documents_path
         fd -L --min-depth 1 --max-depth 1 --type d . $chezmoi_path
-    end | fzf-tmux -p 55%,60% --reverse --preview="" --header "Enter: Open Project in Tmux Session")
+    end | fzf-tmux -p 55%,60% --reverse --no-preview --header "Enter: Open Project in Tmux Session")
 
     if test -n "$selected"
         # Create valid session name by replacing non-alphanumeric characters with underscores
