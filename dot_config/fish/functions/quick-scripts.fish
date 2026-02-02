@@ -5,8 +5,18 @@ function quick-scripts
         fzf-tmux -p 55%,60% --reverse --no-preview --header "Select script(s) to run" --multi)
 
     if test -n "$selected_scripts"
-        for script in $selected_scripts
-            fish ~/.local/bin/$script
-        end
+        # for script in $selected_scripts
+        #     fish ~/.local/bin/$script
+        # end
+        tmux display-popup -w 55% -h 60% -E "fish -c '
+          for script in $selected_scripts
+              echo Running script \$script
+              echo \n
+              fish ~/.local/bin/\$script
+              echo \n
+         end;
+          read -n 1 -P \"Press any key to close...\"'"
+        # bind q run-shell "fish -c 'quick-scripts'"
+        # tmux display-popup -w 55% -h 60% -E "fish -c 'echo hi; read -P Done. Press enter to close...'"
     end
 end

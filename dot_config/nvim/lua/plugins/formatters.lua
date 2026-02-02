@@ -5,6 +5,7 @@ return {
       formatters_by_ft = {
         json = { "prettier" }, -- Ensure JSON uses prettier
         jsonc = { "prettier" }, -- Also for JSON with comments
+        fish = { "fish_indent" },
       },
       formatters = {
         prettier = {
