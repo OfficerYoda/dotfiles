@@ -14,9 +14,7 @@ function quick-scripts
               echo \n
               fish ~/.local/bin/\$script
               echo \n
-         end;
+          end;
           read -n 1 -P \"Press any key to close...\"'"
-        # bind q run-shell "fish -c 'quick-scripts'"
-        # tmux display-popup -w 55% -h 60% -E "fish -c 'echo hi; read -P Done. Press enter to close...'"
     end
 end
