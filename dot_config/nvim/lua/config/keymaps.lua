@@ -17,8 +17,9 @@ map("n", "gg", "gg0", { desc = "Go to first line and start of line" })
 map("v", "G", "G$", { desc = "Go to last line and end of line in visual mode" })
 map("v", "gg", "gg0", { desc = "Go to first line and start of line in visual mode" })
 
-map("n", "0", "^", { desc = "Move to first non-blank character of line" })
-map("x", "0", "^", { desc = "Extend selection to first non-blank character of line" })
+-- Move to start/end of visual line
+map("n", "0", "^", { desc = "Move to first non-blank character" })
+map("x", "0", "^", { desc = "Extend selection to first non-blank character" })
 
 -- --- Smart Line Join ---
 -- Join lines (J) and keep cursor position
@@ -38,8 +39,9 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page up (and center)" })
 
 -- --- Visual Paste to Blackhole Register ---
 -- Paste selected text without affecting the default clipboard/register
-map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register" })
-map("x", "<Leader>P", '"_dP', { desc = "Paste visual selection to blackhole register" })
+-- Note: 'xnoremap' includes both visual and select mode, which is handled by mode 'x' or table {'v', 's'}
+map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register (lowercase)" })
+map("x", "<Leader>P", '"_dP', { desc = "Paste visual selection to blackhole register (uppercase)" })
 
 -- Logical Symbols
 map("i", "]xor", "⊕", { desc = "XOR Symbol" })
@@ -135,24 +137,23 @@ map("i", "_)", "₎", { desc = "Subscript )" })
 -- map("i", "_o", "ₒ", { desc = "Subscript o" })
 map("i", "_x", "ₓ", { desc = "Subscript x" })
 
-local runners = {
-  java = "jr %s",
-  prolog = "swipl -s %s",
-  go = 'go run %s && read -n 1 -P "Press any key to close..."',
-  python = "python3 %s",
-}
+map("n", "<leader>rj", function()
+  Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
+    win = { position = "bottom" },
+    desc = "Run Java",
+  })
+end, { desc = "Run Java" })
 
 map("n", "<leader>rp", function()
-  local ft = vim.bo.filetype
-  local cmd_template = runners[ft]
+  Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
+    win = { position = "bottom" },
+    desc = "Run Prolog",
+  })
+end, { desc = "Run Prolog" })
 
-  if cmd_template then
-    local cmd = string.format(cmd_template, vim.fn.expand("%"))
-    Snacks.terminal.open(cmd, {
-      win = { position = "bottom" },
-      desc = "Run " .. ft,
-    })
-  else
-    vim.notify("No runner configured for filetype: " .. ft, vim.log.levels.WARN)
-  end
-end, { desc = "Run Program" })
+map("n", "<leader>rg", function()
+  Snacks.terminal.open("go run " .. vim.fn.expand("%") .. ' && read -n 1 -P "Press any key to close..."', {
+    win = { position = "bottom" },
+    desc = "Run Go",
+  })
+end, { desc = "Run Go" })
