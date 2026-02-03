@@ -1,7 +1,9 @@
 return {
   "gbprod/yanky.nvim",
   keys = {
-    { "<leader>p", false }, -- Disable default binding
+    -- Disable the default mapping
+    { "<leader>p", false },
+    -- Add the new mapping
     {
       "<leader>y",
       function()
