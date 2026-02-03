@@ -38,7 +38,7 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page up (and center)" })
 
 -- --- Visual Paste to Blackhole Register ---
 -- Paste selected text without affecting the default clipboard/register
-map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register", force = true })
+map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register" })
 map("x", "<Leader>P", '"_dP', { desc = "Paste visual selection to blackhole register" })
 
 -- Logical Symbols
@@ -138,7 +138,7 @@ map("i", "_x", "ₓ", { desc = "Subscript x" })
 local runners = {
   java = "jr %s",
   prolog = "swipl -s %s",
-  go = "go run %s && read",
+  go = 'go run %s && read -n 1 -P "Press any key to close..."',
   python = "python3 %s",
 }
 
