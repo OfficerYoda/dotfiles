@@ -17,11 +17,8 @@ map("n", "gg", "gg0", { desc = "Go to first line and start of line" })
 map("v", "G", "G$", { desc = "Go to last line and end of line in visual mode" })
 map("v", "gg", "gg0", { desc = "Go to first line and start of line in visual mode" })
 
--- Move to start/end of visual line
--- map("n", "0", "g^", { desc = "Move to beginning of visual line" })
--- map("n", "$", "g$", { desc = "Move to end of visual line" })
--- map("x", "0", "g^", { desc = "Extend selection to beginning of visual line" })
--- map("x", "$", "g$", { desc = "Extend selection to end of visual line" })
+map("n", "0", "^", { desc = "Move to first non-blank character of line" })
+map("x", "0", "^", { desc = "Extend selection to first non-blank character of line" })
 
 -- --- Smart Line Join ---
 -- Join lines (J) and keep cursor position
@@ -29,7 +26,6 @@ map("n", "J", "mjJ`j", { desc = "Join line and restore cursor position" })
 
 -- --- Deletion to Blackhole Register ---
 -- Delete/cut without overwriting the default clipboard/register
--- <Leader> is mapped to the leader key, which is \ by default in Neovim/Vim
 map({ "n", "x" }, "<Leader>d", '"_d', { desc = "Delete to blackhole register" })
 -- '<Leader>x is already bound to "diagnostics/quickfix', use '<Leader>dl' instead
 -- map({ "n", "x" }, "<Leader>x", '"_x', { desc = "Delete char to blackhole register" })
@@ -42,51 +38,8 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page up (and center)" })
 
 -- --- Visual Paste to Blackhole Register ---
 -- Paste selected text without affecting the default clipboard/register
--- Note: 'xnoremap' includes both visual and select mode, which is handled by mode 'x' or table {'v', 's'}
-map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register (lowercase)" })
-map("x", "<Leader>P", '"_dP', { desc = "Paste visual selection to blackhole register (uppercase)" })
-
--- --- Alternative Ways to Enter Normal Mode ---
--- 'i': Insert mode; 't': Terminal-Job mode; 's': Select mode
--- local modes = { "i", "t", "s" }
---
--- Remap 'jk' and 'kj' to <Esc> in the specified modes
--- map(modes, "jk", "<Esc>", { desc = "Exit Mode (jk)" })
--- map(modes, "kj", "<Esc>", { desc = "Exit Mode (kj)" })
-
--- Enables moving in the terminal in normal mode
-map("t", "<C-ä>", [[<C-\><C-n>]], { noremap = true })
-
--- Remap <C-c> to work exactly like <Esc>
-map("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
-
--- 1. Note Creation & Templates
-map("n", "<leader>on", "<cmd>Obsidian new<cr>", { desc = "New Note" })
-map("n", "<leader>ot", "<cmd>Obsidian new_from_template<cr>", { desc = "New from Template" })
-map("n", "<leader>oi", "<cmd>Obsidian template<cr>", { desc = "Insert Template" })
-
--- 2. Search & Navigation (The "Knowledge Graph")
-map("n", "<leader>of", "<cmd>Obsidian quick_switch<cr>", { desc = "Find Note File" })
-map("n", "<leader>ob", "<cmd>Obsidian backlinks<cr>", { desc = "Show Backlinks" })
-map("n", "<leader>ol", "<cmd>Obsidian links<cr>", { desc = "List All Links" })
-map("n", "<leader>oc", "<cmd>Obsidian toc<cr>", { desc = "Table of Contents" })
-
--- 3. The "Zettelkasten" Link Follower
-map("n", "<leader>ov", "<cmd>Obsidian follow_link vsplit<cr>", { desc = "Follow Link (vsplit)" })
-
--- 4. Visual Mode (Working with text)
--- 'Link' an existing concept or 'Extract' a new one
-map("v", "<leader>ol", ":Obsidian link<cr>", { desc = "Link Selection" })
-map("v", "<leader>on", ":Obsidian link_new<cr>", { desc = "Link to New Note" })
-map("v", "<leader>oe", ":Obsidian extract_note<cr>", { desc = "Extract to New Note" })
-
--- 5. Daily Log & Productivity
-map("n", "<leader>od", "<cmd>Obsidian today<cr>", { desc = "Daily Note" })
-map("n", "<leader>ox", "<cmd>Obsidian toggle_checkbox<cr>", { desc = "Toggle Checkbox" })
-map("n", "<leader>op", "<cmd>Obsidian paste_img<cr>", { desc = "Paste Image" })
-
--- 6. Maintenance
-map("n", "<leader>or", "<cmd>Obsidian rename<cr>", { desc = "Rename Note" })
+map("x", "<Leader>p", '"_dP', { desc = "Paste visual selection to blackhole register", force = true })
+map("x", "<Leader>P", '"_dP', { desc = "Paste visual selection to blackhole register" })
 
 -- Logical Symbols
 map("i", "]xor", "⊕", { desc = "XOR Symbol" })

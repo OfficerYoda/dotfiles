@@ -72,4 +72,32 @@ return {
       return path .. ".md"
     end,
   },
+  keys = {
+    -- 1. Note Creation & Templates
+    { "<leader>on", "<cmd>Obsidian new<cr>", desc = "New Note" },
+    { "<leader>ot", "<cmd>Obsidian new_from_template<cr>", desc = "New from Template" },
+    { "<leader>oi", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
+
+    -- 2. Search & Navigation
+    { "<leader>of", "<cmd>Obsidian quick_switch<cr>", desc = "Find Note File" },
+    { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Show Backlinks" },
+    { "<leader>ol", "<cmd>Obsidian links<cr>", desc = "List All Links" },
+    { "<leader>oc", "<cmd>Obsidian toc<cr>", desc = "Table of Contents" },
+
+    -- 3. The "Zettelkasten" Link Follower
+    { "<leader>ov", "<cmd>Obsidian follow_link vsplit<cr>", desc = "Follow Link (vsplit)" },
+
+    -- 4. Visual Mode (Note the 'mode' key)
+    { "<leader>ol", ":Obsidian link<cr>", mode = "v", desc = "Link Selection" },
+    { "<leader>on", ":Obsidian link_new<cr>", mode = "v", desc = "Link to New Note" },
+    { "<leader>oe", ":Obsidian extract_note<cr>", mode = "v", desc = "Extract to New Note" },
+
+    -- 5. Daily Log & Productivity
+    { "<leader>od", "<cmd>Obsidian today<cr>", desc = "Daily Note" },
+    { "<leader>ox", "<cmd>Obsidian toggle_checkbox<cr>", desc = "Toggle Checkbox" },
+    { "<leader>op", "<cmd>Obsidian paste_img<cr>", desc = "Paste Image" },
+
+    -- 6. Maintenance
+    { "<leader>or", "<cmd>Obsidian rename<cr>", desc = "Rename Note" },
+  },
 }
