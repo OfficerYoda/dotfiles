@@ -97,3 +97,7 @@ bind \cg _tmux-session-switcher
 # Created by `pipx` on 2025-12-25 03:06:32
 # Modified ym `OfficerYoda` on 2026-01-06 00:57:53
 set PATH $PATH $HOME/.local/bin
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
