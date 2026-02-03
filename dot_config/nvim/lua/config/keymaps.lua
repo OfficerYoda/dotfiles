@@ -182,23 +182,24 @@ map("i", "_)", "₎", { desc = "Subscript )" })
 -- map("i", "_o", "ₒ", { desc = "Subscript o" })
 map("i", "_x", "ₓ", { desc = "Subscript x" })
 
-map("n", "<leader>rj", function()
-  Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
-    win = { position = "bottom" },
-    desc = "Run Java",
-  })
-end, { desc = "Run Java" })
+local runners = {
+  java = "jr %s",
+  prolog = "swipl -s %s",
+  go = "go run %s && read",
+  python = "python3 %s",
+}
 
 map("n", "<leader>rp", function()
-  Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
-    win = { position = "bottom" },
-    desc = "Run Prolog",
-  })
-end, { desc = "Run Prolog" })
+  local ft = vim.bo.filetype
+  local cmd_template = runners[ft]
 
-map("n", "<leader>rg", function()
-  Snacks.terminal.open("go run " .. vim.fn.expand("%") .. " && read", {
-    win = { position = "bottom" },
-    desc = "Run Go",
-  })
-end, { desc = "Run Go" })
+  if cmd_template then
+    local cmd = string.format(cmd_template, vim.fn.expand("%"))
+    Snacks.terminal.open(cmd, {
+      win = { position = "bottom" },
+      desc = "Run " .. ft,
+    })
+  else
+    vim.notify("No runner configured for filetype: " .. ft, vim.log.levels.WARN)
+  end
+end, { desc = "Run Program" })
