@@ -74,6 +74,10 @@ if status is-interactive
     set -g fish_escape_delay_ms 10
 end
 
+if test (uname) = Darwin # Darwin = macOS
+    set -x OLLAMA_CONTEXT_LENGTH 32768
+end
+
 # --- 4. KEYBINDINGS ---
 
 abbr --add .. "cd .."
