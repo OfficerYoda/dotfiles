@@ -1,7 +1,8 @@
 return {
-  "OfficerYoda/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*",
-  cond = vim.fn.getcwd() == vim.fn.resolve(vim.fn.expand("~/Documents/vault")),
+  -- cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
+  cond = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "saghen/blink.cmp",
@@ -10,9 +11,11 @@ return {
     workspaces = {
       {
         name = "jedi-archives",
-        path = vim.fn.resolve(vim.fn.expand("~/Documents/vault")),
+        path = "~/Documents/vault",
       },
     },
+
+    legacy_commands = false,
 
     -- 1. Completion Settings
     completion = {
@@ -27,7 +30,7 @@ return {
     footer = { enabled = false },
     picker = { name = "snacks.pick" },
     new_notes_location = "inbox",
-    attachments = { img_folder = "attachments" },
+    attachments = { folder = "attachments" },
     preferred_link_style = "wiki",
     checkbox = {
       create_new = true, -- default
