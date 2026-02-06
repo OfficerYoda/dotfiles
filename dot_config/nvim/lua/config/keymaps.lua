@@ -92,6 +92,7 @@ map("i", "]subeq", "⊆", { desc = "Subset or equal" })
 map("i", "]supeq", "⊇", { desc = "Superset or equal" })
 map("i", "]emp", "∅", { desc = "Empty set" })
 map("i", "]del", "∆", { desc = "Delta symbol" })
+map("i", "]phi", "φ", { desc = "Phi symbol" })
 
 -- Superscript numbers
 map("i", "^0", "⁰", { desc = "Superscript 0" })
