@@ -19,8 +19,8 @@ return {
 
     -- 1. Completion Settings
     completion = {
-      nvim_cmp = false, -- Disable nvim-cmp
-      blink = true, -- Enable blink.cmp
+      -- nvim_cmp = false, -- Disable nvim-cmp
+      -- blink = true, -- Enable blink.cmp
       min_chars = 1,
     },
 
