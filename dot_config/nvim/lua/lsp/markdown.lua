@@ -4,7 +4,7 @@ return {
     opts = {
       servers = {
         marksman = {
-          enabled = true, -- This prevents LazyVim from starting Marksman
+          enabled = false, -- This prevents LazyVim from starting Marksman
         },
       },
     },
