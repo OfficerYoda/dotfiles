@@ -53,7 +53,8 @@ return {
     -- },
 
     sources = {
-      -- Add all three obsidian providers to the default list
+      -- Add all three obsidian providers to the default list;
+      -- NOT : these are necessary, since they are not automatically added in my obsidian.nvim fork
       default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
       providers = {
         obsidian = {
