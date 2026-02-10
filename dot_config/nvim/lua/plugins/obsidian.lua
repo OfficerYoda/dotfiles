@@ -1,8 +1,7 @@
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
-  -- cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
-  cond = true,
+  cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "saghen/blink.cmp",
