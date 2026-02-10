@@ -56,7 +56,7 @@ return {
       -- Add all three obsidian providers to the default list
       default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
       providers = {
-        obsidian_blink = {
+        obsidian = {
           name = "obsidian",
           module = "obsidian.completion.sources.blink.refs",
           score_offset = 100, -- Prioritize existing notes over "Create New"
