@@ -52,27 +52,27 @@ return {
     --   },
     -- },
 
-    sources = {
-      -- Add all three obsidian providers to the default list;
-      -- NOT : these are necessary, since they are not automatically added in my obsidian.nvim fork
-      default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
-      providers = {
-        obsidian = {
-          name = "obsidian",
-          module = "obsidian.completion.sources.blink.refs",
-          score_offset = 100, -- Prioritize existing notes over "Create New"
-        },
-        obsidian_new = {
-          name = "obsidian_new",
-          module = "obsidian.completion.sources.blink.new",
-          score_offset = 80, -- Lower priority than existing notes
-        },
-        obsidian_tags = {
-          name = "obsidian_tags",
-          module = "obsidian.completion.sources.blink.tags",
-        },
-      },
-    },
+    -- sources = {
+    --   -- Add all three obsidian providers to the default list;
+    --   -- NOT : these are necessary, since they are not automatically added in my obsidian.nvim fork
+    --   default = { "lsp", "path", "snippets", "buffer", "obsidian", "obsidian_new", "obsidian_tags" },
+    --   providers = {
+    --     obsidian = {
+    --       name = "obsidian",
+    --       module = "obsidian.completion.sources.blink.refs",
+    --       score_offset = 100, -- Prioritize existing notes over "Create New"
+    --     },
+    --     obsidian_new = {
+    --       name = "obsidian_new",
+    --       module = "obsidian.completion.sources.blink.new",
+    --       score_offset = 80, -- Lower priority than existing notes
+    --     },
+    --     obsidian_tags = {
+    --       name = "obsidian_tags",
+    --       module = "obsidian.completion.sources.blink.tags",
+    --     },
+    --   },
+    -- },
 
     -- Optional: Better UI for suggestions
     completion = {
