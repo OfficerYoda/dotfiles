@@ -22,10 +22,10 @@ vim.opt.ttimeoutlen = 2
 -- end
 
 -- obsidian.nvim autocomplete fix (https://github.com/orgs/obsidian-nvim/discussions/200)
--- require("blink.cmp").setup({
---   sources = {
---     per_filetype = {
---       markdown = { inherit_defaults = true },
---     },
---   },
--- })
+require("blink.cmp").setup({
+  sources = {
+    per_filetype = {
+      markdown = { inherit_defaults = true },
+    },
+  },
+})
