@@ -11,16 +11,16 @@ return {
     workspaces = {
       {
         name = "jedi-archives",
-        path = "~/Documents/vault",
+        path = vim.fn.expand("~/Documents/vault"),
       },
     },
 
     legacy_commands = false,
-
+    notes_subdir = "/",
     -- 1. Completion Settings
     completion = {
-      -- nvim_cmp = false, -- Disable nvim-cmp
-      -- blink = true, -- Enable blink.cmp
+      nvim_cmp = false, -- Disable nvim-cmp
+      blink = true, -- Enable blink.cmp
       min_chars = 1,
     },
 
@@ -48,32 +48,32 @@ return {
       time_format = "%H:%M",
     },
 
-    note_id_func = function(title)
-      local prefix = os.date("%Y%m%d%H%M")
-      if title ~= nil then
-        local clean_title = title:gsub("[^%sa-zA-Z0-9ÄäÖöÜüß-]", ""):gsub("%s+", "-"):lower()
-        return prefix .. "-" .. clean_title
-      else
-        return prefix .. "-" .. tostring(math.random(1000, 9999))
-      end
-    end,
+    -- note_id_func = function(title)
+    --   local prefix = os.date("%Y%m%d%H%M")
+    --   if title ~= nil then
+    --     local clean_title = title:gsub("[^%sa-zA-Z0-9ÄäÖöÜüß-]", ""):gsub("%s+", "-"):lower()
+    --     return prefix .. "-" .. clean_title
+    --   else
+    --     return prefix .. "-" .. tostring(math.random(1000, 9999))
+    --   end
+    -- end,
 
-    note_path_func = function(spec)
-      local template_name = vim.fn.fnamemodify(spec.template, ":t")
-      local default_folder = "inbox"
-
-      -- Add or remove template mappings here
-      local template_dirs = {
-        ["atomic.md"] = "notes",
-        ["person.md"] = "notes",
-        ["moc.md"] = "notes",
-      }
-
-      local folder = template_dirs[template_name] or default_folder
-      local path = folder == "" and tostring(spec.id) or (folder .. "/" .. spec.id)
-
-      return path .. ".md"
-    end,
+    -- note_path_func = function(spec)
+    --   local template_name = vim.fn.fnamemodify(spec.template, ":t")
+    --   local default_folder = "inbox"
+    --
+    --   -- Add or remove template mappings here
+    --   local template_dirs = {
+    --     ["atomic.md"] = "notes",
+    --     ["person.md"] = "notes",
+    --     ["moc.md"] = "notes",
+    --   }
+    --
+    --   local folder = template_dirs[template_name] or default_folder
+    --   local path = folder == "" and tostring(spec.id) or (folder .. "/" .. spec.id)
+    --
+    --   return path .. ".md"
+    -- end,
   },
   keys = {
     -- 1. Note Creation & Templates
