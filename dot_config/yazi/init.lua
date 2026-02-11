@@ -8,7 +8,7 @@ require("full-border"):setup()
 
 -- ya pkg add yazi-rs/plugins:git
 -- from: https://github.com/yazi-rs/plugins/tree/main/git.yazi
--- require("git"):setup({
--- 	-- Order of status signs showing in the linemode
--- 	order = 1500,
--- })
+require("git"):setup({
+	-- Order of status signs showing in the linemode
+	order = 1500,
+})
