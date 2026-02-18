@@ -143,24 +143,24 @@ map("i", "_)", "₎", { desc = "Subscript )" })
 map("i", "_x", "ₓ", { desc = "Subscript x" })
 
 vim.keymap.set("n", "<leader>rj", function()
-  local root = vim.fn.getcwd() -- project root
-  local main = vim.fn.expand("%:t:r")
-  vim.cmd(
-    "split | terminal cd " .. root .. ' && find . -name "*.java" > sources.txt && javac @sources.txt && java ' .. main
-  )
-end, { desc = "Run Java project (recursive)" })
+  local file = vim.fn.expand("%:p") -- full path
+  local fileNoExt = vim.fn.expand("%:t:r") -- filename without extension
+  local dir = vim.fn.expand("%:p:h") -- directory
+  vim.cmd("split | terminal cd " .. dir .. " && javac " .. file .. " && java " .. fileNoExt)
+end, { desc = "Run current Java file" })
+
 -- map("n", "<leader>rj", function()
---   Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
+--   Snacks.terminal.open("java " .. vim.fn.expand("%"), {
 --     win = { position = "bottom" },
 --     desc = "Run Java",
 --   })
 -- end, { desc = "Run Java" })
 
 map("n", "<leader>rp", function()
-  Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
-    win = { position = "bottom" },
-    desc = "Run Prolog",
-  })
+  -- Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
+  --   win = { position = "bottom" },
+  --   desc = "Run Prolog",
+  -- })
 end, { desc = "Run Prolog" })
 
 map("n", "<leader>rg", function()
