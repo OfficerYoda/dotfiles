@@ -142,12 +142,19 @@ map("i", "_)", "₎", { desc = "Subscript )" })
 -- map("i", "_o", "ₒ", { desc = "Subscript o" })
 map("i", "_x", "ₓ", { desc = "Subscript x" })
 
-map("n", "<leader>rj", function()
-  Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
-    win = { position = "bottom" },
-    desc = "Run Java",
-  })
-end, { desc = "Run Java" })
+vim.keymap.set("n", "<leader>rj", function()
+  local root = vim.fn.getcwd() -- project root
+  local main = vim.fn.expand("%:t:r")
+  vim.cmd(
+    "split | terminal cd " .. root .. ' && find . -name "*.java" > sources.txt && javac @sources.txt && java ' .. main
+  )
+end, { desc = "Run Java project (recursive)" })
+-- map("n", "<leader>rj", function()
+--   Snacks.terminal.open("jr " .. vim.fn.expand("%"), {
+--     win = { position = "bottom" },
+--     desc = "Run Java",
+--   })
+-- end, { desc = "Run Java" })
 
 map("n", "<leader>rp", function()
   Snacks.terminal.open("swipl -s " .. vim.fn.expand("%"), {
