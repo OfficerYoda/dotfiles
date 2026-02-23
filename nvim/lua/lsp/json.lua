@@ -1,0 +1,9 @@
+-- local lspconfig = require("lspconfig")
+--
+-- lspconfig.jsonls.setup({
+--   handlers = {
+--     ["workspace/diagnostic/refresh"] = function()
+--       -- Do nothing, suppress warning
+--     end,
+--   },
+-- })

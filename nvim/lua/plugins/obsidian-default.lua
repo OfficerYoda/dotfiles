@@ -1,0 +1,21 @@
+return {
+  -- "obsidian-nvim/obsidian.nvim",
+  -- enabled = false,
+  -- version = "*", -- use latest release, remove to use latest commit
+  -- ft = "markdown",
+  -- ---@module 'obsidian'
+  -- ---@type obsidian.config
+  -- opts = {
+  --   legacy_commands = false, -- this will be removed in the next major release
+  --   workspaces = {
+  --     {
+  --       name = "jedi-archives",
+  --       path = "~/Documents/vault",
+  --     },
+  --     {
+  --       name = "temp-vault",
+  --       path = "~/Documents/tempvault/",
+  --     },
+  --   },
+  -- },
+}

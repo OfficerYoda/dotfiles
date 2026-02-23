@@ -1,0 +1,37 @@
+# Ignore everything
+/*
+
+# Except these folders
+!fish/
+!nvim/
+!hypr/
+!tmux/
+!ghostty/
+!keyd/
+!karabiner/
+!waybar/
+!btop/
+!opencode/
+!aerospace/
+!yazi/
+
+# Except these files
+!.gitignore
+!README.md
+!sync.fish
+
+# But keep these ignored
+.DS_Store
+btop/themes
+fish/fish_variables
+ghostty/mac-overrides
+karabiner/automatic_backups
+nvim/lazy-lock.json
+nvim/lua/plugins/theme.lua
+nvim/spell
+opencode/.gitignore
+opencode/bun.lock
+opencode/node_modules
+opencode/package.json
+tmux/plugins/
+waybar/*.bak.*
