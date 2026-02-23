@@ -1,9 +1,8 @@
 #!/usr/bin/env fish
 
-# Define the path to chezmoi dotfiles repo.
 set -l DOTFILES_DIR "$HOME/.config/"
 
-echo "Starting chezmoi sync..."
+echo "Starting dotfiles sync..."
 
 # Change directory, or exit if it fails.
 if not cd "$DOTFILES_DIR"
