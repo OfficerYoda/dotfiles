@@ -9,6 +9,8 @@ return {
         ["]"] = { output = { left = "[[", right = "]]" } },
         ["{"] = { output = { left = "{", right = "}" } },
         ["}"] = { output = { left = "{ ", right = " }" } },
+        ["<"] = { output = { left = "<", right = ">" } },
+        [">"] = { output = { left = "< ", right = " >" } },
       },
     },
   },
