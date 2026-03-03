@@ -8,6 +8,21 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Swap Left Option and Left Command",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_option" },
+                                "to": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "left_command" },
+                                "to": [{ "key_code": "left_option" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Option + N to Tilde (~)",
                         "manipulators": [
                             {
