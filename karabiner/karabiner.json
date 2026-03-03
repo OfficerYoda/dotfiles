@@ -9,6 +9,7 @@
                 "rules": [
                     {
                         "description": "Swap Left Option and Left Command",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": { "key_code": "left_option" },
