@@ -19,6 +19,7 @@
 !.gitignore
 !README.md
 !sync.fish
+!setup.sh
 
 # But keep these ignored
 .DS_Store
