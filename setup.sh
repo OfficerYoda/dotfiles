@@ -2,6 +2,9 @@
 
 # Dotfiles VPS Setup Script
 # This script automates the complete setup of dotfiles on a fresh Ubuntu/Debian VPS
+#
+# run it with:
+# curl -fsSL https://raw.githubusercontent.com/OfficerYoda/dotfiles/main/setup.sh | bash
 
 set -e  # Exit on any error
 
