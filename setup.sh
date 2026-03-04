@@ -44,7 +44,7 @@ echo ""
 # ============================================================================
 # 1. System Update & Basic Dependencies
 # ============================================================================
-log_info "Step 1/18: Updating system and installing basic dependencies..."
+log_info "Step 1/17: Updating system and installing basic dependencies..."
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y curl wget git build-essential unzip ca-certificates
@@ -54,7 +54,7 @@ echo ""
 # ============================================================================
 # 2. Install Core CLI Tools
 # ============================================================================
-log_info "Step 2/18: Installing core CLI tools from apt..."
+log_info "Step 2/17: Installing core CLI tools from apt..."
 sudo apt install -y \
   fish \
   tmux \
@@ -74,7 +74,7 @@ echo ""
 # ============================================================================
 # 3. Install Starship Prompt
 # ============================================================================
-log_info "Step 3/18: Installing Starship prompt..."
+log_info "Step 3/17: Installing Starship prompt..."
 if ! command -v starship &> /dev/null; then
     curl -sS https://starship.rs/install.sh | sh -s -- -y
     log_success "Starship installed"
@@ -86,7 +86,7 @@ echo ""
 # ============================================================================
 # 4. Install Zoxide
 # ============================================================================
-log_info "Step 4/18: Installing Zoxide..."
+log_info "Step 4/17: Installing Zoxide..."
 if ! command -v zoxide &> /dev/null; then
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
     log_success "Zoxide installed"
@@ -98,7 +98,7 @@ echo ""
 # ============================================================================
 # 5. Install Bat
 # ============================================================================
-log_info "Step 5/18: Installing bat..."
+log_info "Step 5/17: Installing bat..."
 sudo apt install -y bat
 
 # Create symlink if installed as 'batcat'
@@ -114,7 +114,7 @@ echo ""
 # ============================================================================
 # 6. Install Mise
 # ============================================================================
-log_info "Step 6/18: Installing Mise..."
+log_info "Step 6/17: Installing Mise..."
 if ! command -v mise &> /dev/null; then
     curl https://mise.run | sh
     export PATH="$HOME/.local/bin:$PATH"
@@ -125,25 +125,16 @@ fi
 echo ""
 
 # ============================================================================
-# 7. Install Rust
+# 7. Install Yazi
 # ============================================================================
-log_info "Step 7/18: Installing Rust toolchain..."
-if ! command -v cargo &> /dev/null; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
-    log_success "Rust installed"
-else
-    log_warning "Rust already installed, skipping"
-    source "$HOME/.cargo/env" 2>/dev/null || true
-fi
-echo ""
-
-# ============================================================================
-# 8. Install Yazi
-# ============================================================================
-log_info "Step 8/18: Installing Yazi file manager..."
+log_info "Step 7/17: Installing Yazi file manager..."
 if ! command -v yazi &> /dev/null; then
-    cargo install --locked yazi-fm yazi-cli
+    YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -sLo yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
+    unzip -q yazi.zip
+    sudo install -m 755 "yazi-x86_64-unknown-linux-gnu/yazi" /usr/local/bin/yazi
+    sudo install -m 755 "yazi-x86_64-unknown-linux-gnu/ya" /usr/local/bin/ya
+    rm -rf yazi.zip yazi-x86_64-unknown-linux-gnu
     log_success "Yazi installed"
 else
     log_warning "Yazi already installed, skipping"
@@ -151,9 +142,9 @@ fi
 echo ""
 
 # ============================================================================
-# 9. Install Bun
+# 8. Install Bun
 # ============================================================================
-log_info "Step 9/18: Installing Bun..."
+log_info "Step 8/17: Installing Bun..."
 if ! command -v bun &> /dev/null; then
     curl -fsSL https://bun.sh/install | bash
     export BUN_INSTALL="$HOME/.bun"
@@ -165,9 +156,9 @@ fi
 echo ""
 
 # ============================================================================
-# 10. Install Optional/Fun Tools
+# 9. Install Optional/Fun Tools
 # ============================================================================
-log_info "Step 10/18: Installing optional tools (pigz, chafa, asciiquarium, lazydocker, lazygit)..."
+log_info "Step 9/17: Installing optional tools (pigz, chafa, asciiquarium, lazydocker, lazygit)..."
 
 # Pigz
 sudo apt install -y pigz
@@ -216,9 +207,9 @@ log_success "Optional tools installed"
 echo ""
 
 # ============================================================================
-# 11. Clone Dotfiles Repository
+# 10. Clone Dotfiles Repository
 # ============================================================================
-log_info "Step 11/18: Cloning dotfiles repository..."
+log_info "Step 10/17: Cloning dotfiles repository..."
 
 # Backup existing .config if it exists
 if [ -d "$HOME/.config" ] && [ ! -d "$HOME/.config/.git" ]; then
@@ -238,9 +229,9 @@ fi
 echo ""
 
 # ============================================================================
-# 12. Install Tmux Plugin Manager (TPM)
+# 11. Install Tmux Plugin Manager (TPM)
 # ============================================================================
-log_info "Step 12/18: Installing Tmux Plugin Manager..."
+log_info "Step 11/17: Installing Tmux Plugin Manager..."
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
     log_success "TPM installed"
@@ -250,9 +241,9 @@ fi
 echo ""
 
 # ============================================================================
-# 13. Install Tmux Plugins
+# 12. Install Tmux Plugins
 # ============================================================================
-log_info "Step 13/18: Installing Tmux plugins..."
+log_info "Step 12/17: Installing Tmux plugins..."
 if [ -d "$HOME/.tmux/plugins/tpm" ]; then
     "$HOME/.tmux/plugins/tpm/bin/install_plugins"
     log_success "Tmux plugins installed"
@@ -260,9 +251,9 @@ fi
 echo ""
 
 # ============================================================================
-# 14. Install Yazi Plugins
+# 13. Install Yazi Plugins
 # ============================================================================
-log_info "Step 14/18: Installing Yazi plugins..."
+log_info "Step 13/17: Installing Yazi plugins..."
 if command -v ya &> /dev/null; then
     ya pack -i
     log_success "Yazi plugins installed"
@@ -272,9 +263,9 @@ fi
 echo ""
 
 # ============================================================================
-# 15. Setup Fish Shell
+# 14. Setup Fish Shell
 # ============================================================================
-log_info "Step 15/18: Setting up Fish shell..."
+log_info "Step 14/17: Setting up Fish shell..."
 
 # Add fish to valid shells
 FISH_PATH=$(which fish)
@@ -294,27 +285,27 @@ fi
 echo ""
 
 # ============================================================================
-# 16. Initialize Fish Configuration
+# 15. Initialize Fish Configuration
 # ============================================================================
-log_info "Step 16/18: Initializing Fish configuration..."
+log_info "Step 15/17: Initializing Fish configuration..."
 # Fish will load config automatically on first run
 fish -c "echo 'Fish configuration loaded successfully'" 2>/dev/null || true
 log_success "Fish configuration initialized"
 echo ""
 
 # ============================================================================
-# 17. Setup Neovim
+# 16. Setup Neovim
 # ============================================================================
-log_info "Step 17/18: Setting up Neovim..."
+log_info "Step 16/17: Setting up Neovim..."
 log_info "Neovim plugins will be installed automatically on first run"
 log_info "You can verify by running: nvim and checking plugin installation"
 log_success "Neovim configuration ready"
 echo ""
 
 # ============================================================================
-# 18. Final Steps
+# 17. Final Steps
 # ============================================================================
-log_info "Step 18/18: Finalizing setup..."
+log_info "Step 17/17: Finalizing setup..."
 
 # Ensure ~/.local/bin is in PATH
 mkdir -p "$HOME/.local/bin"
@@ -339,7 +330,7 @@ echo "Installed tools:"
 echo "  • Core: fish, tmux, neovim, git, fzf, ripgrep, fd, btop"
 echo "  • Shell: starship, zoxide, bat, mise"
 echo "  • File management: yazi"
-echo "  • Development: rust, bun, lazygit, lazydocker"
+echo "  • Development: bun, lazygit, lazydocker"
 echo "  • Fun: asciiquarium, chafa, pigz"
 echo ""
 echo "Useful commands:"
