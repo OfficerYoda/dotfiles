@@ -8,7 +8,7 @@ return {
         insert = "<C-r>",
       },
     },
-    model = "Auto (Copilot)",
+    model = "auto",
     providers = {
       ollama = {
         prepare_input = require("CopilotChat.config.providers").copilot.prepare_input,
