@@ -39,5 +39,5 @@ config-file = ?"~/.config/ghostty/mac-overrides"
 
 # Quick terminal
 keybind = global:cmd+shift+o=toggle_quick_terminal
-quick-terminal-size = 75%
+quick-terminal-size = 50%
 quick-terminal-animation-duration = 0.0
