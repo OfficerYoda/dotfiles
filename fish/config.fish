@@ -95,8 +95,6 @@ abbr tmls "tmux ls"
 
 alias decompress "tar -xzf"
 
-alias glow "glow --pager"
-
 bind \cf _tmux-project-opener
 bind \cg _tmux-session-switcher
 
