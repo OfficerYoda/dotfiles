@@ -41,3 +41,6 @@ config-file = ?"~/.config/ghostty/mac-overrides"
 keybind = global:cmd+shift+o=toggle_quick_terminal
 quick-terminal-size = 50%
 quick-terminal-animation-duration = 0.0
+
+# Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
+async-backend = epoll
