@@ -93,6 +93,8 @@ abbr --add gcad "git commit -a --amend"
 
 abbr tmls "tmux ls"
 
+abbr --add ffpdf "open -a \"Firefox\""
+
 alias decompress "tar -xzf"
 
 bind \cf _tmux-project-opener
