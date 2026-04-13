@@ -95,6 +95,7 @@ abbr tmls "tmux ls"
 
 abbr --add ffpdf "open -a \"Firefox\""
 abbr --add va "source ./bin/activate.fish"
+abbr --add home "cd && clear"
 
 alias decompress "tar -xzf"
 
