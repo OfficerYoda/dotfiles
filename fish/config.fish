@@ -94,6 +94,7 @@ abbr --add gcad "git commit -a --amend"
 abbr tmls "tmux ls"
 
 abbr --add ffpdf "open -a \"Firefox\""
+abbr --add "va source ./bin/activate.fish"
 
 alias decompress "tar -xzf"
 
