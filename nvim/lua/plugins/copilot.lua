@@ -39,8 +39,8 @@ return {
         -- List the models available via your proxy
         get_models = function()
           return {
-            { id = "gpt-4", name = "Proxy GPT-4" },
-            { id = "claude-3", name = "Proxy Claude" },
+            { id = "anthropic--claude-4.6-sonnet", name = "Proxy Sonnet 4.6" },
+            { id = "anthropic--claude-4.6-opus", name = "Proxy opus 4.6" },
           }
         end,
         -- Use the standard OpenAI/Copilot formatting logic
