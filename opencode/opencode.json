@@ -17,7 +17,7 @@
     "anthropic": {
       "options": {
         "baseURL": "http://localhost:6655/anthropic/v1",
-        "apiKey": "your-api-key-from-proxy"
+        "apiKey": "{env:HAI_PROXY_API_KEY}"
       }
     }
   }
