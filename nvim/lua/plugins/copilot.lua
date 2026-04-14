@@ -8,7 +8,7 @@ return {
         insert = "<C-r>",
       },
     },
-    model = "auto",
+    model = "anthropic--claude-sonnet-latest",
     providers = {
       ollama = {
         prepare_input = require("CopilotChat.config.providers").copilot.prepare_input,
@@ -20,12 +20,12 @@ return {
           return {
             {
               id = "qwen3-coder:30b", -- Ensure this matches your 'ollama list' name
-              name = "Qwen Coder 30B",
+              name = "Qwen3 Coder 30B",
             },
           }
         end,
       },
-      proxy_ai = {
+      hai_proxy = {
         -- Replace with your LiteLLM endpoint
         get_url = function()
           return "http://localhost:6655/litellm/v1/chat/completions"
@@ -33,14 +33,14 @@ return {
         -- Set your local API key
         get_headers = function()
           return {
-            ["Authorization"] = "Bearer YOUR_API_KEY",
+            ["Authorization"] = "Bearer " .. (os.getenv("HAI_PROXY_API_KEY") or ""),
           }
         end,
         -- List the models available via your proxy
         get_models = function()
           return {
-            { id = "anthropic--claude-4.6-sonnet", name = "Proxy Sonnet 4.6" },
-            { id = "anthropic--claude-4.6-opus", name = "Proxy opus 4.6" },
+            { id = "anthropic--claude-sonnet-latest", name = "Proxy Sonnet latest" },
+            { id = "anthropic--claude-opus-latest", name = "Proxy Opus latest" },
           }
         end,
         -- Use the standard OpenAI/Copilot formatting logic
