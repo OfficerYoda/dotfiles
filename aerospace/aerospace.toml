@@ -178,8 +178,8 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'secondary'
-3 = 'secondary'
-4 = 'main'
-5 = 'secondary'
+1 = ['27GN7', 'main']
+2 = ['LG ULTRAGEAR', 'secondary']
+3 = ['27GN7', 'secondary']
+4 = ['LG ULTRAGEAR', 'main']
+5 = ['LG ULTRAGEAR', 'secondary']
