@@ -8,22 +8,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Swap Left Option and Left Command",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_option" },
-                                "to": [{ "key_code": "left_command" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": { "key_code": "left_command" },
-                                "to": [{ "key_code": "left_option" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Option + N to Tilde (~)",
                         "manipulators": [
                             {
@@ -331,6 +315,23 @@
                         "vendor_id": 1133
                     },
                     "ignore_vendor_events": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 58562,
+                        "vendor_id": 13357
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "left_option" },
+                            "to": [{ "key_code": "left_command" }]
+                        },
+                        {
+                            "from": { "key_code": "left_command" },
+                            "to": [{ "key_code": "left_option" }]
+                        }
+                    ]
                 }
             ],
             "name": "Default profile",
