@@ -85,6 +85,7 @@ abbr --add ... "cd ../.."
 abbr --add .... "cd ../../.."
 
 abbr --add d docker
+abbr --add doco "docker compose"
 
 abbr --add g git
 abbr --add gcm "git commit -m"
