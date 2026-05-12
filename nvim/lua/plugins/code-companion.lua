@@ -10,6 +10,7 @@ return {
       http = {
         opts = {
           allow_insecure = true,
+          show_model_choices = true, -- default, but explicit for clarity
         },
         litellm = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
@@ -18,6 +19,16 @@ return {
               api_key = os.getenv("HAI_PROXY_API_KEY") or "",
               chat_url = "/v1/chat/completions",
               models_endpoint = "/v1/models",
+            },
+            schema = {
+              model = {
+                default = "anthropic--claude-4.5-haiku",
+                choices = {
+                  "anthropic--claude-4.5-haiku",
+                  "anthropic--claude-4.6-sonnet",
+                  "anthropic--claude-4.6-opus",
+                },
+              },
             },
           })
         end,
@@ -40,7 +51,6 @@ return {
       inline = { adapter = "litellm" },
     },
   },
-
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "x" } },
     {
