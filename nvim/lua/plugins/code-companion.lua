@@ -65,5 +65,11 @@ return {
       desc = "Prompt Actions (CodeCompanion)",
       mode = { "n", "x" },
     },
+    {
+      "<leader>aq",
+      "<cmd>CodeCompanionChat Add<cr>",
+      desc = "Ask about selection (CodeCompanion)",
+      mode = { "x" },
+    },
   },
 }
