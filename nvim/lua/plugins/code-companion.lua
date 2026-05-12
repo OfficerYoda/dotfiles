@@ -1,11 +1,42 @@
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
-  opts = {},
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
+  opts = {
+    adapters = {
+      http = {
+        opts = {
+          allow_insecure = true,
+        },
+        litellm = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = {
+              url = "http://localhost:6655/litellm",
+              api_key = os.getenv("HAI_PROXY_API_KEY") or "",
+              chat_url = "/v1/chat/completions",
+              models_endpoint = "/v1/models",
+            },
+          })
+        end,
+        litellm_anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            url = "http://localhost:6655/anthropic/v1/messages",
+            env = {
+              api_key = os.getenv("HAI_PROXY_API_KEY") or "",
+            },
+          })
+        end,
+      },
+    },
+    interactions = {
+      chat = { adapter = "litellm" },
+      inline = { adapter = "litellm" },
+    },
+  },
+
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "x" } },
     {

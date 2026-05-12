@@ -1,5 +1,6 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
+  ft = { "markdown", "codecompanion" },
   opts = {
     -- Override LazyVim's empty icons to use fancy ones
     heading = {
