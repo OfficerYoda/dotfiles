@@ -21,11 +21,15 @@ return {
             },
           })
         end,
-        litellm_anthropic = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            url = "http://localhost:6655/anthropic/v1/messages",
+        ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
             env = {
-              api_key = os.getenv("HAI_PROXY_API_KEY") or "",
+              url = "http://localhost:11434",
+            },
+            schema = {
+              model = {
+                default = "qwen3.6:35b-a3b-coding-nvfp4",
+              },
             },
           })
         end,
@@ -46,53 +50,10 @@ return {
       mode = { "n", "x" },
     },
     {
-      "<leader>ax",
-      function()
-        -- Reset/clear the current chat
-        local chat = require("codecompanion").last_chat()
-        if chat then
-          chat:reset()
-        end
-      end,
-      desc = "Clear (CodeCompanion)",
-      mode = { "n", "x" },
-    },
-    {
-      "<leader>aq",
-      function()
-        vim.ui.input({
-          prompt = "Quick Chat: ",
-        }, function(input)
-          if input and input ~= "" then
-            require("codecompanion").chat(input)
-          end
-        end)
-      end,
-      desc = "Quick Chat (CodeCompanion)",
-      mode = { "n", "x" },
-    },
-    {
       "<leader>ap",
       "<cmd>CodeCompanionActions<cr>",
       desc = "Prompt Actions (CodeCompanion)",
       mode = { "n", "x" },
-    },
-    {
-      "<leader>am",
-      function()
-        -- Switch adapters/models
-        vim.ui.select({ "hai_proxy", "ollama" }, {
-          prompt = "Select adapter:",
-        }, function(choice)
-          if choice then
-            local chat = require("codecompanion").last_chat()
-            if chat then
-              chat.adapter = require("codecompanion.adapters").resolve(choice)
-            end
-          end
-        end)
-      end,
-      desc = "Change CodeCompanion Model",
     },
   },
 }
