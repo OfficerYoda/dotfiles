@@ -22,7 +22,7 @@ return {
             },
             schema = {
               model = {
-                default = "anthropic--claude-4.5-haiku",
+                default = "anthropic--claude-4.5-sonnet",
                 choices = {
                   "anthropic--claude-4.5-haiku",
                   "anthropic--claude-4.6-sonnet",
