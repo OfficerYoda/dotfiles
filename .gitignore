@@ -20,7 +20,7 @@
 !README.md
 !sync.fish
 !setup.sh
-!starsip.toml
+!starship.toml
 
 # But keep these ignored
 .DS_Store
