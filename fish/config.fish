@@ -94,9 +94,14 @@ abbr --add gcad "git commit -a --amend"
 
 abbr tmls "tmux ls"
 
-abbr --add ffpdf "open -a \"Firefox\""
-abbr --add va "source ./bin/activate.fish"
-abbr --add home "cd && clear"
+abbr ffpdf "open -a \"Zen\""
+abbr va "source ./bin/activate.fish"
+abbr home "cd && clear"
+
+abbr oc opencode
+abbr occ "opencode --continue"
+
+alias bat "bat -pP"
 
 alias decompress "tar -xzf"
 
@@ -110,3 +115,5 @@ set PATH $PATH $HOME/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+thefuck --alias | source

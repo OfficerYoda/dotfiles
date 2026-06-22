@@ -14,6 +14,7 @@
 !opencode/
 !aerospace/
 !yazi/
+!skills/
 
 # Except these files
 !.gitignore

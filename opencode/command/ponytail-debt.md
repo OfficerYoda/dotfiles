@@ -1,0 +1,1 @@
+/Users/I767799/.config/skills/ponytail/.opencode/command/ponytail-debt.md

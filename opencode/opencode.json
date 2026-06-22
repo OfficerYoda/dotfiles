@@ -29,6 +29,9 @@
     }
   },
   "share": "disabled",
-  "model": "anthropic/claude-opus-4-7",
-  "small_model": "anthropic/claude-sonnet-4-6"
+  "model": "anthropic/claude-opus-4-6",
+  "small_model": "anthropic/claude-sonnet-4-6",
+  "plugin": [
+    "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
+  ]
 }
