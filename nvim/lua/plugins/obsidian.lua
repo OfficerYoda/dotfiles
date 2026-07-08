@@ -14,7 +14,6 @@ return {
     legacy_commands = false,
     notes_subdir = "/",
     new_notes_location = "inbox",
-
     completion = { min_chars = 0 },
     ui = { enable = false }, -- make render-markdown render everything
     footer = { enabled = false },
