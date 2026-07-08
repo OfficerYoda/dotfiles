@@ -6,12 +6,10 @@ set -g fish_greeting
 
 # --- 1. ENVIRONMENT VARIABLES ---
 
-# In Fish, 'set -x' is used for exported environment variables.
-# You need to manually manage the EDITOR variable for SUDO_EDITOR.
 if test -z "$EDITOR"
     set -x EDITOR nvim
+    set -x SUDO_EDITOR "$EDITOR"
 end
-set -x SUDO_EDITOR "$EDITOR"
 set -x BAT_THEME ansi
 
 # --- 2. INITIALIZATION ---
@@ -102,6 +100,7 @@ abbr oc opencode
 abbr occ "opencode --continue"
 
 alias bat "bat -pP"
+alias cat bat
 
 alias decompress "tar -xzf"
 
@@ -115,5 +114,3 @@ set PATH $PATH $HOME/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
-thefuck --alias | source

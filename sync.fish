@@ -1,50 +1,50 @@
 #!/usr/bin/env fish
 
-# echo "called on timestamp"
+echo "called on timestamp"
 
-# Get timestamp
-# set timestamp (date '+%Y-%m-%d %H:%M:%S')
+Get timestamp
+set timestamp (date '+%Y-%m-%d %H:%M:%S')
+
+# Get callstack (function names)
+set callstack (status stack-trace)
+
+# Append to file
+echo "[$timestamp] $callstack" >>called.txt
+
+exit 0
+
+# set -l DOTFILES_DIR "$HOME/.config/"
 #
-# # Get callstack (function names)
-# set callstack (status stack-trace)
+# echo "Starting dotfiles sync..."
 #
-# # Append to file
-# echo "[$timestamp] $callstack" >>called.txt
+# # Change directory, or exit if it fails.
+# if not cd "$DOTFILES_DIR"
+#     echo "Error: Cannot change to $DOTFILES_DIR" 1>&2
+#     exit 1
+# end
 #
-# exit 0
-
-set -l DOTFILES_DIR "$HOME/.config/"
-
-echo "Starting dotfiles sync..."
-
-# Change directory, or exit if it fails.
-if not cd "$DOTFILES_DIR"
-    echo "Error: Cannot change to $DOTFILES_DIR" 1>&2
-    exit 1
-end
-
-# Check for local changes.
-set -l local_changes (git status --porcelain)
-
-if test -n "$local_changes"
-    echo "Local changes detected. Committing..."
-
-    git add -A --sparse
-
-    # Use date command to format the commit message string
-    set -l COMMIT_MSG (printf "Automatic sync: %s" (date +%Y-%m-%d\ %H:%M:%S))
-
-    git commit -m "$COMMIT_MSG"
-else
-    echo "No local changes detected."
-end
-
-# Pull First to integrate remote changes (replaying local commits on top)
-echo "Pulling latest changes from remote (using --rebase)..."
-git pull --rebase
-
-# Push Last. If there's nothing to push
-echo "Pushing commits..."
-git push
-
-echo "Dotfiles sync complete."
+# # Check for local changes.
+# set -l local_changes (git status --porcelain)
+#
+# if test -n "$local_changes"
+#     echo "Local changes detected. Committing..."
+#
+#     git add -A --sparse
+#
+#     # Use date command to format the commit message string
+#     set -l COMMIT_MSG (printf "Automatic sync: %s" (date +%Y-%m-%d\ %H:%M:%S))
+#
+#     git commit -m "$COMMIT_MSG"
+# else
+#     echo "No local changes detected."
+# end
+#
+# # Pull First to integrate remote changes (replaying local commits on top)
+# echo "Pulling latest changes from remote (using --rebase)..."
+# git pull --rebase
+#
+# # Push Last. If there's nothing to push
+# echo "Pushing commits..."
+# git push
+#
+# echo "Dotfiles sync complete."
