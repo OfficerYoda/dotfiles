@@ -80,17 +80,17 @@ end
 
 # --- 4. KEYBINDINGS ---
 
-abbr --add .. "cd .."
-abbr --add ... "cd ../.."
-abbr --add .... "cd ../../.."
+abbr .. "cd .."
+abbr ... "cd ../.."
+abbr .... "cd ../../.."
 
-abbr --add d docker
-abbr --add doco "docker compose"
+abbr d docker
+abbr doco "docker compose"
 
-abbr --add g git
-abbr --add gcm "git commit -m"
-abbr --add gcam "git commit -a -m"
-abbr --add gcad "git commit -a --amend"
+abbr g git
+abbr gcm "git commit -m"
+abbr gcam "git commit -a -m"
+abbr gcad "git commit -a --amend"
 
 abbr tmls "tmux ls"
 
@@ -115,5 +115,3 @@ set PATH $PATH $HOME/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
-thefuck --alias | source
