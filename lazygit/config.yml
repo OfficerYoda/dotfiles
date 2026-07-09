@@ -1,0 +1,4 @@
+git:
+  overrideGpg: true
+  pagers:
+    - externalDiffCommand: difft --color=always --display=inline

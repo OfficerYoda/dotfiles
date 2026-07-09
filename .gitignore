@@ -15,6 +15,7 @@
 !aerospace/
 !yazi/
 !skills/
+!lazygit/
 
 # Except these files
 !.gitignore
