@@ -94,14 +94,19 @@ abbr gcad "git commit -a --amend"
 
 abbr tmls "tmux ls"
 
-abbr ffpdf "open -a \"Zen\""
-abbr va "source ./bin/activate.fish"
 abbr home "cd && clear"
+
+if test (uname) = Darwin # Darwin = macOS
+    abbr ffpdf "open -a \"Zen\""
+else
+    abbr ffpdf zen-browser
+end
 
 abbr oc opencode
 abbr occ "opencode --continue"
 
 alias bat "bat -pP"
+alias cat bat
 
 alias decompress "tar -xzf"
 
