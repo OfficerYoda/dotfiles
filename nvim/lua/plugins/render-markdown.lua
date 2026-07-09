@@ -2,6 +2,7 @@ return {
   "MeanderingProgrammer/render-markdown.nvim",
   ft = { "markdown", "codecompanion" },
   opts = {
+    completions = { lsp = { enabled = true } },
     -- Override LazyVim's empty icons to use fancy ones
     heading = {
       -- sign = true,

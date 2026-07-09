@@ -3,10 +3,6 @@ return {
   version = "*",
   cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
   ft = "markdown",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "saghen/blink.cmp",
-  },
   opts = {
     workspaces = {
       {
@@ -17,21 +13,19 @@ return {
 
     legacy_commands = false,
     notes_subdir = "/",
-    -- 1. Completion Settings
-    completion = {
-      nvim_cmp = false, -- Disable nvim-cmp
-      blink = true, -- Enable blink.cmp
-      min_chars = 1,
-    },
+    new_notes_location = "inbox",
 
-    -- 2. Link Formatting
-    wiki_link_func = "prepend_note_id", -- e.g. [[202601111736-foo-bar|Foo Bar]]
+    completion = { min_chars = 0 },
     ui = { enable = false }, -- make render-markdown render everything
     footer = { enabled = false },
     picker = { name = "snacks.pick" },
-    new_notes_location = "inbox",
     attachments = { folder = "attachments" },
-    preferred_link_style = "wiki",
+
+    link = {
+      style = "wiki",
+      auto_update = true,
+    },
+
     checkbox = {
       create_new = true, -- default
       order = { " ", "x", "-" },
@@ -42,10 +36,15 @@ return {
     },
 
     templates = {
-      subdir = "templates",
-      date_format = "%Y-%m-%d",
-      alias_format = "Daily Note %Y-%m-%d",
-      time_format = "%H:%M",
+      folder = "templates",
+      date_format = "YYYY-MM-DD",
+      time_format = "HH:mm",
+
+      customizations = {
+        atomic = { notes_subdir = "notes" },
+        moc = { notes_subdir = "notes" },
+        person = { notes_subdir = "notes" },
+      },
     },
 
     note_id_func = function(title)
@@ -54,27 +53,11 @@ return {
         local clean_title = title:gsub("[^%sa-zA-Z0-9ÄäÖöÜüß-]", ""):gsub("%s+", "-"):lower()
         return prefix .. "-" .. clean_title
       else
-        return prefix .. "-" .. tostring(math.random(1000, 9999))
+        return prefix .. "-" .. tostring(math.random(1000, 10000))
       end
     end,
-
-    note_path_func = function(spec)
-      local template_name = vim.fn.fnamemodify(spec.template, ":t")
-      local default_folder = "inbox"
-
-      -- Add or remove template mappings here
-      local template_dirs = {
-        ["atomic.md"] = "notes",
-        ["person.md"] = "notes",
-        ["moc.md"] = "notes",
-      }
-
-      local folder = template_dirs[template_name] or default_folder
-      local path = folder == "" and tostring(spec.id) or (folder .. "/" .. spec.id)
-
-      return path .. ".md"
-    end,
   },
+
   keys = {
     -- 1. Note Creation & Templates
     { "<leader>on", "<cmd>Obsidian new<cr>", desc = "New Note" },
