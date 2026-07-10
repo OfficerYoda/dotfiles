@@ -30,20 +30,53 @@ else
     echo "[$TS] No local changes."
 end
 
-# Step 2: Pull with rebase
-git pull --rebase
+# Step 2: Fetch remote
+git fetch origin main
 if test $status -ne 0
-    echo "[$TS] ERROR: Pull --rebase failed. Aborting rebase." >&2
-    git rebase --abort 2>/dev/null
+    echo "[$TS] ERROR: Fetch failed." >&2
     exit 1
 end
-echo "[$TS] Pull complete."
 
-# Step 3: Push
-git push
-if test $status -ne 0
-    echo "[$TS] ERROR: Push failed." >&2
-    exit 1
+# Step 3: Determine divergence and act accordingly
+set -l LOCAL (git rev-parse HEAD)
+set -l REMOTE (git rev-parse origin/main)
+set -l BASE (git merge-base HEAD origin/main)
+
+if test "$LOCAL" = "$REMOTE"
+    echo "[$TS] Already in sync. Nothing to do."
+    exit 0
+else if test "$LOCAL" = "$BASE"
+    # Only remote is ahead — fast-forward (no local commits at risk)
+    git pull --ff-only
+    if test $status -ne 0
+        echo "[$TS] ERROR: Fast-forward pull failed." >&2
+        exit 1
+    end
+    echo "[$TS] Fast-forwarded to remote."
+else if test "$REMOTE" = "$BASE"
+    # Only local is ahead — just push
+    git push
+    if test $status -ne 0
+        echo "[$TS] ERROR: Push failed." >&2
+        exit 1
+    end
+    echo "[$TS] Pushed local changes."
+else
+    # Both sides diverged — merge to preserve all changes
+    git merge --no-edit -m "Automatic merge: $TS" origin/main
+    if test $status -ne 0
+        echo "[$TS] ERROR: Merge conflict. Aborting merge. Manual intervention needed." >&2
+        git merge --abort 2>/dev/null
+        exit 1
+    end
+    echo "[$TS] Merged remote changes."
+
+    git push
+    if test $status -ne 0
+        echo "[$TS] ERROR: Push failed." >&2
+        exit 1
+    end
+    echo "[$TS] Pushed merged result."
 end
 
 echo "[$TS] Sync complete."
