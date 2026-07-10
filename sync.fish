@@ -37,6 +37,7 @@ if test $status -ne 0
     exit 1
 end
 
+# hello
 # Step 3: Determine divergence and act accordingly
 set -l LOCAL (git rev-parse HEAD)
 set -l REMOTE (git rev-parse origin/main)
