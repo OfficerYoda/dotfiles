@@ -12,6 +12,9 @@ return {
     },
 
     legacy_commands = false,
+    frontmatter = {
+      sort = { "created", "aliases", "tags", "moc" },
+    },
     notes_subdir = "/",
     new_notes_location = "inbox",
     ui = { enable = false }, -- make render-markdown render everything
