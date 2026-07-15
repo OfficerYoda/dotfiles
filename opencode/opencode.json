@@ -43,13 +43,16 @@
         "--rm",
         "-i",
         "-e",
-        "FORGEJO_ACCESS_TOKEN=d9001dd6ded00a9acf7bfbfb97b4ca84d10e4f6f",
+        "FORGEJO_ACCESS_TOKEN",
         "codeberg.org/goern/forgejo-mcp:latest",
         "--transport",
         "stdio",
         "--url",
         "https://forgejo.officeryoda.dev"
-      ]
+      ],
+      "environment": {
+        "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
+      }
     }
   }
 }
