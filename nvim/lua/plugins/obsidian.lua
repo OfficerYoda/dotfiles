@@ -49,15 +49,14 @@ return {
       },
     },
 
-    note_id_func = require("obsidian.builtin").title_id,
-    -- note_id_func = function(title)
-    --   local prefix = os.date("%Y%m%d%H%M")
-    --   if title ~= nil then
-    --     return title
-    --   else
-    --     return prefix
-    --   end
-    -- end,
+    note_id_func = function(title)
+      if title ~= nil then
+        return title
+      else
+        local date = os.date("%Y%m%d%H%M")
+        return date
+      end
+    end,
   },
 
   keys = {
