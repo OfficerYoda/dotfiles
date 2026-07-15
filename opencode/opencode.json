@@ -32,5 +32,24 @@
   "small_model": "anthropic/claude-sonnet-4-6",
   "plugin": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
-  ]
+  ],
+  "mcp": {
+    "forgejo-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "FORGEJO_ACCESS_TOKEN=d9001dd6ded00a9acf7bfbfb97b4ca84d10e4f6f",
+        "codeberg.org/goern/forgejo-mcp:latest",
+        "--transport",
+        "stdio",
+        "--url",
+        "https://forgejo.officeryoda.dev"
+      ]
+    }
+  }
 }
