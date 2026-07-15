@@ -15,7 +15,7 @@ return {
     frontmatter = {
       sort = { "created", "aliases", "tags", "moc" },
     },
-    notes_subdir = "/",
+    notes_subdir = "inbox",
     new_notes_location = "inbox",
     ui = { enable = false }, -- make render-markdown render everything
     footer = { enabled = false },
@@ -29,8 +29,9 @@ return {
 
     checkbox = {
       create_new = true, -- default
-      order = { " ", "x", "-" },
+      order = { " ", "x" },
     },
+
     daily_notes = {
       template = "daily-note.md",
       workdays_only = false,
@@ -48,15 +49,15 @@ return {
       },
     },
 
-    note_id_func = function(title)
-      local prefix = os.date("%Y%m%d%H%M")
-      if title ~= nil then
-        local clean_title = title:gsub("[^%sa-zA-Z0-9ÄäÖöÜüß-]", ""):gsub("%s+", "-"):lower()
-        return prefix .. "-" .. clean_title
-      else
-        return prefix .. "-" .. tostring(math.random(1000, 10000))
-      end
-    end,
+    note_id_func = require("obsidian.builtin").title_id,
+    -- note_id_func = function(title)
+    --   local prefix = os.date("%Y%m%d%H%M")
+    --   if title ~= nil then
+    --     return title
+    --   else
+    --     return prefix
+    --   end
+    -- end,
   },
 
   keys = {
