@@ -13,6 +13,7 @@
   "provider": {
     "anthropic": {
       "options": {
+        "name": "HAI Anthropic",
         "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/anthropic/v1"
       }
