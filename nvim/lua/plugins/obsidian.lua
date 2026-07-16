@@ -24,6 +24,7 @@ return {
 
     link = {
       style = "wiki",
+      format = "shortest",
       auto_update = true,
     },
 
