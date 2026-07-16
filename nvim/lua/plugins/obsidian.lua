@@ -13,7 +13,7 @@ return {
 
     legacy_commands = false,
     frontmatter = {
-      sort = { "created", "aliases", "tags", "moc" },
+      sort = { "id", "created", "aliases", "tags", "moc" },
     },
     notes_subdir = "inbox",
     new_notes_location = "inbox",
@@ -54,7 +54,7 @@ return {
         return title
       else
         local date = os.date("%Y%m%d%H%M")
-        return date
+        return "Untitled " .. date
       end
     end,
   },
