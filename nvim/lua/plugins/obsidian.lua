@@ -67,7 +67,7 @@ return {
     { "<leader>oi", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
 
     -- 2. Search & Navigation
-    { "<leader>of", "<cmd>Obsidian quick_switch<cr>", desc = "Find Note File" },
+    { "<leader>os", "<cmd>Obsidian quick_switch<cr>", desc = "Find Note File" },
     { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Show Backlinks" },
     { "<leader>ol", "<cmd>Obsidian links<cr>", desc = "List All Links" },
     { "<leader>oc", "<cmd>Obsidian toc<cr>", desc = "Table of Contents" },
