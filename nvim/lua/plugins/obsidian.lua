@@ -13,7 +13,7 @@ return {
 
     legacy_commands = false,
     frontmatter = {
-      sort = { "id", "created", "aliases", "tags", "moc" },
+      sort = { "id", "created", "tags", "aliases", "moc" },
     },
     notes_subdir = "inbox",
     new_notes_location = "inbox",
