@@ -49,5 +49,10 @@
         "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
       }
     }
+  },
+  "agent": {
+    "explore": {
+      "model": "anthropic/claude-sonnet-4-6"
+    }
   }
 }
