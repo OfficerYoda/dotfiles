@@ -65,8 +65,6 @@ if status is-interactive
     # --- 3. SHELL SETTINGS (from shell) ---
 
     # History control: HISTSIZE and HISTFILESIZE are automatically managed by fish.
-    # No need for shopt -s histappend.
-    # Fish uses a flag for history ignore.
     set -g fish_history_ignore_space
 
     # Time in ms to wait for a KEY CODE sequence (like Escape codes) to complete
