@@ -96,6 +96,7 @@ abbr home "cd && clear"
 
 if test (uname) = Darwin # Darwin = macOS
     abbr ffpdf "open -a \"Zen\""
+    abbr airdrop "shortcuts run \"AirDrop File\" -i"
 else
     abbr ffpdf zen-browser
 end
