@@ -16,52 +16,6 @@
         "name": "HAI Anthropic",
         "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/anthropic/v1"
-      },
-      "models": {
-        "claude-sonnet-4-6": {
-          "options": {
-            "thinking": {
-              "type": "enabled",
-              "budgetTokens": 16000
-            }
-          },
-          "variants": {
-            "high": {
-              "thinking": {
-                "type": "enabled",
-                "budgetTokens": 32000
-              }
-            },
-            "max": {
-              "thinking": {
-                "type": "enabled",
-                "budgetTokens": 100000
-              }
-            }
-          }
-        },
-        "claude-opus-4-6": {
-          "options": {
-            "thinking": {
-              "type": "enabled",
-              "budgetTokens": 32000
-            }
-          },
-          "variants": {
-            "high": {
-              "thinking": {
-                "type": "enabled",
-                "budgetTokens": 65000
-              }
-            },
-            "max": {
-              "thinking": {
-                "type": "enabled",
-                "budgetTokens": 200000
-              }
-            }
-          }
-        }
       }
     },
     "ollama": {
@@ -75,30 +29,30 @@
       }
     }
   },
-  "model": "anthropic/claude-opus-4-6",
-  "small_model": "anthropic/claude-sonnet-4-6",
-  "plugin": [
-    "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
-  ],
-  "mcp": {
-    "forgejo-mcp": {
-      "enabled": true,
-      "type": "local",
-      "command": [
-        "{env:GO_PATH}/bin/forgejo-mcp",
-        "--transport",
-        "stdio",
-        "--url",
-        "https://forgejo.officeryoda.dev"
-      ],
-      "environment": {
-        "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
-      }
-    }
-  },
   "agent": {
     "explore": {
       "model": "anthropic/claude-sonnet-4-6"
     }
-  }
+  },
+  "model": "anthropic/claude-opus-4-8",
+  "small_model": "anthropic/claude-sonnet-4-6",
+  "plugin": [
+    "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
+  ]
+  // "mcp": {
+  //   "forgejo-mcp": {
+  //     "enabled": true,
+  //     "type": "local",
+  //     "command": [
+  //       "{env:GO_PATH}/bin/forgejo-mcp",
+  //       "--transport",
+  //       "stdio",
+  //       "--url",
+  //       "https://forgejo.officeryoda.dev"
+  //     ],
+  //     "environment": {
+  //       "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
+  //     }
+  //   }
+  // },
 }
