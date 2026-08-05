@@ -13,7 +13,7 @@ return {
 
     legacy_commands = false,
     frontmatter = {
-      sort = { "created", "aliases", "tags", "moc" },
+      sort = { "id", "created", "tags", "aliases", "moc" },
     },
     notes_subdir = "inbox",
     new_notes_location = "inbox",
@@ -24,6 +24,7 @@ return {
 
     link = {
       style = "wiki",
+      format = "shortest",
       auto_update = true,
     },
 
@@ -54,7 +55,7 @@ return {
         return title
       else
         local date = os.date("%Y%m%d%H%M")
-        return date
+        return "Untitled " .. date
       end
     end,
   },
@@ -66,7 +67,7 @@ return {
     { "<leader>oi", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
 
     -- 2. Search & Navigation
-    { "<leader>of", "<cmd>Obsidian quick_switch<cr>", desc = "Find Note File" },
+    { "<leader>os", "<cmd>Obsidian quick_switch<cr>", desc = "Find Note File" },
     { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Show Backlinks" },
     { "<leader>ol", "<cmd>Obsidian links<cr>", desc = "List All Links" },
     { "<leader>oc", "<cmd>Obsidian toc<cr>", desc = "Table of Contents" },
