@@ -90,6 +90,9 @@ abbr gcm "git commit -m"
 abbr gcam "git commit -a -m"
 abbr gcad "git commit -a --amend"
 
+abbr lg lazygit
+abbr ld lazydocker
+
 abbr tmls "tmux ls"
 
 abbr home "cd && clear"
