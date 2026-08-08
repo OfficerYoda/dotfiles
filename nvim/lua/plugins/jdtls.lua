@@ -1,15 +1,17 @@
 return {
-  -- {
-  --   "mfussenegger/nvim-jdtls",
-  --   opts = {
-  --     -- This tells jdtls to treat 'src' as a source folder even without a pom.xml/build.gradle
-  --     settings = {
-  --       java = {
-  --         project = {
-  --           sourcePaths = { "src" },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "mfussenegger/nvim-jdtls",
+    opts = {
+      settings = {
+        java = {
+          format = {
+            settings = {
+              url = vim.fn.expand("~/.config/nvim/eclipse-formatter.xml"),
+              profile = "GoogleStyle",
+            },
+          },
+        },
+      },
+    },
+  },
 }
