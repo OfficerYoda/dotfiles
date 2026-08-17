@@ -19,20 +19,6 @@
         "baseURL": "http://localhost:6655/anthropic/v1"
       }
     },
-    "google": {
-      "name": "HAI Gemini",
-      "options": {
-        "apiKey": "{env:HAI_PROXY_API_KEY}",
-        "baseURL": "http://localhost:6655/gemini/v1beta"
-      }
-    },
-    "openai": {
-      "name": "HAI OpenAI",
-      "options": {
-        "apiKey": "{env:HAI_PROXY_API_KEY}",
-        "baseURL": "http://localhost:6655/openai/v1"
-      }
-    },
     "ollama": {
       "options": {
         "baseURL": "http://localhost:11434/v1"
@@ -49,7 +35,7 @@
       "model": "anthropic/claude-sonnet-4-6"
     }
   },
-  "model": "anthropic/claude-opus-4-6",
+  "model": "anthropic/claude-opus-4-7",
   "small_model": "anthropic/claude-sonnet-4-6",
   "plugin": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
