@@ -109,6 +109,7 @@ abbr occ "opencode --continue"
 
 alias bat "bat -pP"
 alias cat bat
+alias npm pnpm
 
 alias decompress "tar -xzf"
 
@@ -122,3 +123,10 @@ set PATH $PATH $HOME/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# pnpm
+set -gx PNPM_HOME "/Users/I767799/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
