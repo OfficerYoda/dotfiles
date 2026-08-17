@@ -10,6 +10,7 @@
       "*.env.example": "allow"
     }
   },
+  "share": "disabled",
   "provider": {
     "anthropic": {
       "options": {
