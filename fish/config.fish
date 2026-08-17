@@ -100,6 +100,13 @@ abbr home "cd && clear"
 if test (uname) = Darwin # Darwin = macOS
     abbr ffpdf "open -a \"Zen\""
     abbr airdrop "shortcuts run \"AirDrop File\" -i"
+
+    # pnpm
+    set -gx PNPM_HOME "/Users/I767799/.local/share/pnpm"
+    if not string match -q -- "$PNPM_HOME/bin" $PATH
+        set -gx PATH "$PNPM_HOME/bin" $PATH
+    end
+    # pnpm end
 else
     abbr ffpdf zen-browser
 end
@@ -123,10 +130,3 @@ set PATH $PATH $HOME/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
-# pnpm
-set -gx PNPM_HOME "/Users/I767799/.local/share/pnpm"
-if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
-end
-# pnpm end
