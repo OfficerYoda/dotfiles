@@ -40,6 +40,9 @@
       "models": {
         "qwen3.6:35b-a3b-coding-nvfp4": {
           "name": "Qwen 3.6 35B-A3B Coding"
+        },
+        "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q5_K_XL": {
+          "name": "Qwen 3.8 27B"
         }
       }
     }
