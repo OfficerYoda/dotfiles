@@ -113,7 +113,7 @@ end
 
 abbr oc opencode
 abbr occ "opencode --continue"
-abbr ocs --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
+abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 
 alias bat "bat -pP"
 alias cat bat
