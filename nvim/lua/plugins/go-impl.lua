@@ -12,7 +12,7 @@ return {
   opts = {},
   keys = {
     {
-      "<leader>Gi",
+      "<leader>ci",
       function()
         require("go-impl").open()
       end,
