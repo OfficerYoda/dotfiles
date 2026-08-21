@@ -56,21 +56,21 @@
   "small_model": "anthropic/claude-sonnet-4-6",
   "plugin": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
-  ]
-  // "mcp": {
-  //   "forgejo-mcp": {
-  //     "enabled": true,
-  //     "type": "local",
-  //     "command": [
-  //       "{env:GO_PATH}/bin/forgejo-mcp",
-  //       "--transport",
-  //       "stdio",
-  //       "--url",
-  //       "https://forgejo.officeryoda.dev"
-  //     ],
-  //     "environment": {
-  //       "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
-  //     }
-  //   }
-  // },
+  ],
+  "mcp": {
+    "forgejo-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "{env:GO_PATH}/bin/forgejo-mcp",
+        "--transport",
+        "stdio",
+        "--url",
+        "https://forgejo.officeryoda.dev"
+      ],
+      "environment": {
+        "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
+      }
+    }
+  }
 }
