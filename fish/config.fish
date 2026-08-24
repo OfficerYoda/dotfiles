@@ -111,8 +111,10 @@ else
     abbr ffpdf zen-browser
 end
 
-abbr oc opencode
-abbr occ "opencode --continue"
+abbr oc "headroom wrap opencode"
+abbr oc "headroom wrap opencode --continue"
+abbr och opencode
+abbr occh "opencode --continue"
 abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 
 alias bat "bat -pP"
