@@ -112,7 +112,7 @@ else
 end
 
 abbr oc "headroom wrap opencode"
-abbr oc "headroom wrap opencode --continue"
+abbr occ "headroom wrap opencode --continue"
 abbr och opencode
 abbr occh "opencode --continue"
 abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'

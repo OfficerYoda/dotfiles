@@ -95,15 +95,6 @@
         "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
       }
     },
-    "headroom": {
-      "type": "local",
-      "command": [
-        "/Users/I767799/.local/bin/headroom",
-        "mcp",
-        "serve"
-      ],
-      "enabled": true
-    },
     "serena": {
       "type": "local",
       "command": [
@@ -117,6 +108,15 @@
         "agent",
         "--open-web-dashboard",
         "False"
+      ],
+      "enabled": true
+    },
+    "headroom": {
+      "type": "local",
+      "command": [
+        "/Users/I767799/.local/bin/headroom",
+        "mcp",
+        "serve"
       ],
       "enabled": true
     }
