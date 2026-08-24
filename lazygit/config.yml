@@ -1,4 +1,5 @@
 git:
   overrideGpg: true
-  pagers:
-    - externalDiffCommand: difft --color=always
+  diffRenderers:
+    - command: difft --color=always
+      type: extDiff
