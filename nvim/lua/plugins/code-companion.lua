@@ -22,11 +22,13 @@ return {
             },
             schema = {
               model = {
-                default = "anthropic--claude-4.5-haiku",
+                default = "gpt-5.6-luna",
                 choices = {
                   "anthropic--claude-4.5-haiku",
                   "anthropic--claude-4.6-sonnet",
                   "anthropic--claude-4.6-opus",
+                  "gpt-5.6-luna",
+                  "gpt-5.6-terra",
                 },
               },
             },
