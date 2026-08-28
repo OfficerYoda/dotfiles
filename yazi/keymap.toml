@@ -23,10 +23,3 @@ desc = "Zoom in hovered file"
 on = "-"
 run = "plugin zoom -1"
 desc = "Zoom out hovered file"
-
-# ya pkg add yazi-rs/plugins:visual-pivot
-# https://github.com/yazi-rs/plugins/tree/main/visual-pivot.yazi
-[[mgr.prepend_keymap]]
-on = "<C-o>"
-run = "plugin visual-pivot"
-desc = "Move cursor to the other end of the selection"
