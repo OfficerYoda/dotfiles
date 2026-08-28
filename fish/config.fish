@@ -107,14 +107,17 @@ if test (uname) = Darwin # Darwin = macOS
         set -gx PATH "$PNPM_HOME/bin" $PATH
     end
     # pnpm end
+
+    abbr oc "headroom wrap opencode"
+    abbr occ "headroom wrap opencode --continue"
+    abbr och opencode
+    abbr occh "opencode --continue"
 else
     abbr ffpdf zen-browser
+    abbr oc opencode
+    abbr occ "opencode --continue"
 end
 
-abbr oc "headroom wrap opencode"
-abbr occ "headroom wrap opencode --continue"
-abbr och opencode
-abbr occh "opencode --continue"
 abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 
 alias bat "bat -pP"
