@@ -113,7 +113,11 @@
     },
     "headroom": {
       "type": "local",
-      "command": ["/Users/I767799/.local/bin/headroom", "mcp", "serve"],
+      "command": [
+        "/Users/I767799/.local/bin/headroom",
+        "mcp",
+        "serve"
+      ],
       "enabled": true
     }
   }
