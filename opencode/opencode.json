@@ -72,7 +72,8 @@
   },
   "agent": {
     "explore": {
-      "model": "anthropic/claude-sonnet-4-6"
+      "model": "anthropic/claude-sonnet-4-6",
+      "variant": "low"
     }
   },
   "model": "anthropic/claude-sonnet-4-6",
