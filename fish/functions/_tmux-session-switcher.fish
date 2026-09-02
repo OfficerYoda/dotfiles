@@ -5,8 +5,8 @@ function _tmux-session-switcher
         --reverse \
         --multi \
         --preview="" \
-        --header "Enter: Switch | ctrl-k: Kill Session(s)" \
-        --bind "ctrl-k:execute(tmk {+})+reload(tmux list-sessions -F '#{session_name}')")
+        --header "Enter: Switch | ctrl-d: Kill Session(s)" \
+        --bind "ctrl-d:execute(tmk {+})+reload(tmux list-sessions -F '#{session_name}')")
 
     if test -n "$session"
         if set -q TMUX
