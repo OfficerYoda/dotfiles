@@ -95,7 +95,8 @@ abbr ld lazydocker
 
 abbr tmls "tmux ls"
 
-abbr home "cd && clear"
+abbr home "cd ~ && clear"
+abbr down "cd ~/Downloads"
 
 if test (uname) = Darwin # Darwin = macOS
     abbr ffpdf "open -a \"Zen\""
