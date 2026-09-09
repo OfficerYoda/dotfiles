@@ -84,8 +84,8 @@ abbr .... "cd ../../.."
 
 abbr d docker
 abbr doco "docker compose"
-abbr docou "docker compose up -d"
-abbr docod "docker compose down"
+abbr docu "docker compose up -d"
+abbr docd "docker compose down"
 
 abbr g git
 abbr gcm "git commit -m"
