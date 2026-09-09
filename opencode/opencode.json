@@ -38,39 +38,18 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
+        "qwen3.6:35b-a3b-coding-nvfp4": {
+          "name": "Qwen 3.6 35B-A3B Coding"
+        },
         "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q5_K_XL": {
           "name": "Qwen 3.8 27B"
-        }
-      }
-    },
-    "headroom": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Headroom Proxy",
-      "options": {
-        "baseURL": "http://127.0.0.1:8787/v1"
-      },
-      "models": {
-        "gpt-4o": {
-          "name": "GPT-4o",
-          "limit": {
-            "context": 128000,
-            "output": 16384
-          }
-        },
-        "gpt-4.1": {
-          "name": "GPT-4.1",
-          "limit": {
-            "context": 1048576,
-            "output": 32768
-          }
         }
       }
     }
   },
   "agent": {
     "explore": {
-      "model": "anthropic/claude-sonnet-4-6",
-      "variant": "low"
+      "model": "anthropic/claude-sonnet-4-6"
     }
   },
   "model": "anthropic/claude-sonnet-4-6",
@@ -83,7 +62,6 @@
       "enabled": true,
       "type": "local",
       "command": [
-        
         "{env:GO_PATH}/bin/forgejo-mcp",
         "--transport",
         "stdio",
@@ -93,31 +71,6 @@
       "environment": {
         "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
       }
-    },
-    "serena": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "serena-agent",
-        "serena",
-        "start-mcp-server",
-        "--project-from-cwd",
-        "--context",
-        "agent",
-        "--open-web-dashboard",
-        "False"
-      ],
-      "enabled": true
-    },
-    "headroom": {
-      "type": "local",
-      "command": [
-        "/Users/I767799/.local/bin/headroom",
-        "mcp",
-        "serve"
-      ],
-      "enabled": true
     }
   }
 }

@@ -84,6 +84,8 @@ abbr .... "cd ../../.."
 
 abbr d docker
 abbr doco "docker compose"
+abbr docou "docker compose up -d"
+abbr docod "docker compose down"
 
 abbr g git
 abbr gcm "git commit -m"
@@ -109,16 +111,14 @@ if test (uname) = Darwin # Darwin = macOS
     end
     # pnpm end
 
-    abbr oc "headroom wrap opencode"
-    abbr occ "headroom wrap opencode --continue"
-    abbr och opencode
-    abbr occh "opencode --continue"
+    abbr och "headroom wrap opencode"
+    abbr occh "headroom wrap opencode --continue"
 else
     abbr ffpdf zen-browser
-    abbr oc opencode
-    abbr occ "opencode --continue"
 end
 
+abbr oc opencode
+abbr occ "opencode --continue"
 abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 
 alias bat "bat -pP"
