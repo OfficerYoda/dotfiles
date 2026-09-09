@@ -83,6 +83,7 @@
       "enabled": true,
       "type": "local",
       "command": [
+        
         "{env:GO_PATH}/bin/forgejo-mcp",
         "--transport",
         "stdio",
