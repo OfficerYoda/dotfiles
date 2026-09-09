@@ -61,7 +61,7 @@
     "forgejo-mcp": {
       "enabled": true,
       "type": "remote",
-      "url": "https://forgejo.mcp/mcp",
+      "url": "http://localhost:8677/mcp",
       "headers": {
         "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
       }
