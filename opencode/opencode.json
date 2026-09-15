@@ -67,16 +67,10 @@
   "mcp": {
     "forgejo-mcp": {
       "enabled": true,
-      "type": "local",
-      "command": [
-        "{env:GO_PATH}/bin/forgejo-mcp",
-        "--transport",
-        "stdio",
-        "--url",
-        "https://forgejo.officeryoda.dev"
-      ],
-      "environment": {
-        "FORGEJO_ACCESS_TOKEN": "{env:FORGEJO_MCP_SERVER}"
+      "type": "remote",
+      "url": "http://localhost:8677/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
       }
     }
   }
