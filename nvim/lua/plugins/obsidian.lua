@@ -50,6 +50,12 @@ return {
       },
     },
 
+    completion = {
+      min_chars = 1,
+      match_case = false,
+      create_new = false,
+    },
+
     note_id_func = function(title)
       if title ~= nil then
         return title
