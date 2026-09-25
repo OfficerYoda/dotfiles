@@ -81,6 +81,7 @@ end
 abbr .. "cd .."
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
+abbr - "cd -"
 
 abbr d docker
 abbr doco "docker compose"
