@@ -5,7 +5,9 @@
     "mode": "system"
   },
   "keybinds": {
-    "prompt.skills": "<leader>o"
+    "prompt.skills": "<leader>o",
+    "agent.cycle": "tab",
+    "agent.cycle.reverse": "shift+tab"
   },
   "diffs": {
     "wrap": "word",
@@ -26,10 +28,10 @@
   },
   "animations": true,
   "tabs": {
-    "mode": "on",
+    "mode": "off",
     "scope": "cwd",
     "layout": "horizontal",
-    "indicators": "status"
+    "indicators": "numbers"
   },
   "scroll": {
     "acceleration": false
