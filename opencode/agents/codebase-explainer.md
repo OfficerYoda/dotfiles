@@ -38,10 +38,13 @@ description: >-
     (Since the user wants to understand a specific flow through the system, use
   the codebase-explainer agent to follow the path and explain each step.)
 mode: subagent
-tools:
-  write: false
-  edit: false
-  webfetch: false
+permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: webfetch
+    resource: "*"
+    effect: deny
 ---
 
 You are an expert software architect and technical educator with deep experience

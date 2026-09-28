@@ -1,42 +1,42 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": false,
-  "permission": {
-    "*": "allow",
-    "read": {
-      "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
-      "*.env.example": "allow"
-    }
-  },
+  "update": "disable",
+  "permissions": [
+    { "action": "*", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*.env", "effect": "deny" },
+    { "action": "read", "resource": "*.env.*", "effect": "deny" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" }
+  ],
   "share": "disabled",
   "lsp": true,
-  "subagent_depth": 2,
-  "provider": {
+  "experimental": {
+    "subagent_depth": 2
+  },
+  "providers": {
     "anthropic": {
-      "options": {
-        "name": "HAI Anthropic",
+      "name": "HAI Anthropic",
+      "settings": {
         "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/anthropic/v1"
       }
     },
     "google": {
       "name": "HAI Gemini",
-      "options": {
+      "settings": {
         "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/gemini/v1beta"
       }
     },
     "openai": {
       "name": "HAI OpenAI",
-      "options": {
+      "settings": {
         "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/openai/v1"
       }
     },
     "ollama": {
-      "options": {
+      "settings": {
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
@@ -49,35 +49,42 @@
       }
     }
   },
-  "agent": {
+  "agents": {
     "explore": {
-      "model": "anthropic/claude-sonnet-4-6",
-      "variant": "low"
+      "model": "anthropic/claude-sonnet-4-6#low"
     },
     "general": {
-      "tools": {
-        "task": true
-      }
+      "permissions": [
+        { "action": "subagent", "resource": "*", "effect": "allow" }
+      ]
+    },
+    "title": {
+      "model": "anthropic/claude-sonnet-4-6"
     }
   },
   "model": "anthropic/claude-sonnet-4-6",
-  "small_model": "anthropic/claude-sonnet-4-6",
-  "plugin": [
-    "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail.mjs"
+  "plugins": [
+    "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
+    "/Users/I767799/.config/opencode/plugins/rtk"
+  ],
+  "skills": [
+    "/Users/I767799/.config/skills/ponytail/skills"
   ],
   "mcp": {
-    "forgejo-mcp": {
-      "enabled": true,
-      "type": "remote",
-      "url": "http://localhost:8677/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
+    "servers": {
+      "forgejo-mcp": {
+        "disabled": false,
+        "type": "remote",
+        "url": "http://localhost:8677/mcp",
+        "headers": {
+          "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
+        }
       }
+      // "openrouter": {
+      //   "type": "remote",
+      //   "url": "https://mcp.openrouter.agi/mcp",
+      //   "disabled": false
+      // }
     }
-    // "openrouter": {
-    //   "type": "remote",
-    //   "url": "https://mcp.openrouter.agi/mcp",
-    //   "enabled": true
-    // }
   }
 }
