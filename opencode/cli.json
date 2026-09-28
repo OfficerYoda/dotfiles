@@ -38,7 +38,7 @@
   },
   "prompt": {
     "paste": "compact",
-    "image_preview": false
+    "image_preview": true
   },
   "attention": {
     "notifications": true,
