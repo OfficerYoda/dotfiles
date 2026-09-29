@@ -37,7 +37,7 @@
     "acceleration": false
   },
   "prompt": {
-    "paste": "compact",
+    "paste": "full",
     "image_preview": true
   },
   "attention": {
