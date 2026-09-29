@@ -16,7 +16,7 @@
     "single": false
   },
   "session": {
-    "sidebar": "auto",
+    "sidebar": "hide",
     "scrollbar": false,
     "thinking": "hide",
     "markdown": "rendered",
