@@ -50,9 +50,9 @@
     }
   },
   "agents": {
-    "explore": {
-      "model": "anthropic/claude-sonnet-4-6#low"
-    },
+    // "explore": {
+    //   "model": "anthropic/claude-sonnet-4-6#low"
+    // },
     "general": {
       "permissions": [
         { "action": "subagent", "resource": "*", "effect": "allow" }
@@ -67,9 +67,7 @@
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
     "/Users/I767799/.config/opencode/plugins/rtk"
   ],
-  "skills": [
-    "/Users/I767799/.config/skills/ponytail/skills"
-  ],
+  "skills": ["/Users/I767799/.config/skills/ponytail/skills"],
   "mcp": {
     "servers": {
       "forgejo-mcp": {
