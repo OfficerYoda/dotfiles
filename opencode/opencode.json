@@ -66,6 +66,7 @@
   "plugins": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
     "/Users/I767799/.config/opencode/plugins/rtk"
+
   ],
   "skills": ["/Users/I767799/.config/skills/ponytail/skills"],
   "mcp": {
