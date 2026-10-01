@@ -50,9 +50,9 @@
     }
   },
   "agents": {
-    // "explore": {
-    //   "model": "anthropic/claude-sonnet-4-6#low"
-    // },
+    "explore": {
+      "model": "anthropic/claude-sonnet-4-6#low"
+    },
     "general": {
       "permissions": [
         { "action": "subagent", "resource": "*", "effect": "allow" }
