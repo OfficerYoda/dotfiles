@@ -29,7 +29,7 @@
   "animations": true,
   "tabs": {
     "mode": "off",
-    "scope": "cwd",
+    "scope": "global",
     "layout": "horizontal",
     "indicators": "numbers"
   },
