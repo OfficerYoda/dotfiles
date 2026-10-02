@@ -77,12 +77,12 @@
         "headers": {
           "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
         }
+      },
+      "openrouter": {
+        "type": "remote",
+        "url": "https://mcp.openrouter.ai/mcp",
+        "disabled": false
       }
-      // "openrouter": {
-      //   "type": "remote",
-      //   "url": "https://mcp.openrouter.agi/mcp",
-      //   "disabled": false
-      // }
     }
   }
 }
