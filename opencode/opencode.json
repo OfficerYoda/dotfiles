@@ -77,7 +77,7 @@
       },
       "forgejo-action-waiter": {
         "type": "remote",
-        "url": "https://action-waiter.example.com/mcp",
+        "url": "https://action-waiter.forgejo.officeryoda.dev/mcp",
         "oauth": false,
         "headers": {
           "Authorization": "Bearer {env:FORGEJO_ACTION_WAITER_TOKEN}"
