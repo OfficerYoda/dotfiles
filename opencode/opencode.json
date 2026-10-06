@@ -73,9 +73,14 @@
       "forgejo-mcp": {
         "disabled": false,
         "type": "remote",
-        "url": "http://localhost:8677/mcp",
+        "url": "http://localhost:8677/mcp"
+      },
+      "forgejo-action-waiter": {
+        "type": "remote",
+        "url": "https://action-waiter.example.com/mcp",
+        "oauth": false,
         "headers": {
-          "Authorization": "Bearer {env:FORGEJO_MCP_SERVER}"
+          "Authorization": "Bearer {env:FORGEJO_ACTION_WAITER_TOKEN}"
         }
       },
       "openrouter": {
