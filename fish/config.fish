@@ -112,15 +112,14 @@ if test (uname) = Darwin # Darwin = macOS
     end
     # pnpm end
 
-    abbr och "headroom wrap opencode"
-    abbr occh "headroom wrap opencode --continue"
-else
+    abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
+else # Linux
     abbr ffpdf zen-browser
+    abbr ocq --set-cursor='%' 'opencode run --model openrouter/deepseek/deepseek-v4.1-flash "%"'
 end
 
 abbr oc opencode
 abbr occ "opencode --continue"
-abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 
 alias bat "bat -pP"
 alias cat bat
