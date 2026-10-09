@@ -102,7 +102,7 @@ abbr home "cd ~ && clear"
 abbr down "cd ~/Downloads"
 
 if test (uname) = Darwin # Darwin = macOS
-    abbr ffpdf "open -a \"Zen\""
+    abbr ff "open -a \"Zen\""
     abbr airdrop "shortcuts run \"AirDrop File\" -i"
 
     # pnpm
@@ -114,7 +114,7 @@ if test (uname) = Darwin # Darwin = macOS
 
     abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
 else # Linux
-    abbr ffpdf zen-browser
+    abbr ff zen-browser
     abbr ocq --set-cursor='%' 'opencode run --model openrouter/deepseek/deepseek-v4.1-flash "%"'
 end
 
