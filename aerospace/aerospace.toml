@@ -183,3 +183,7 @@ alt-shift-l = ['join-with right', 'mode main']
 3 = ['27GN7', 'secondary']
 4 = ['LG ULTRAGEAR', 'main']
 5 = ['LG ULTRAGEAR', 'secondary']
+
+[[on-window-detected]]
+if.app-id = 'com.sap.openjdk.java'
+run = 'layout floating'
