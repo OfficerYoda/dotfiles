@@ -188,3 +188,6 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'com.sap.openjdk.java'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.sap.hyperspace.AI'
+run = 'layout floating'
