@@ -187,3 +187,4 @@ alt-shift-l = ['join-with right', 'mode main']
 [[on-window-detected]]
 if.app-id = 'com.sap.openjdk.java'
 run = 'layout floating'
+
