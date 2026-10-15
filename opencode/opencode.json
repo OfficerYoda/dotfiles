@@ -62,7 +62,6 @@
       "model": "anthropic/claude-sonnet-4-6"
     }
   },
-  "model": "anthropic/claude-sonnet-4-6",
   "plugins": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
     "/Users/I767799/.config/opencode/plugins/rtk"
