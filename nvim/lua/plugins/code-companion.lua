@@ -51,6 +51,7 @@ return {
             schema = {
               model = {
                 default = "deepseek/deepseek-v4.1-flash",
+                version = "low",
               },
             },
           })
@@ -58,8 +59,8 @@ return {
       },
     },
     interactions = {
-      chat = { adapter = "opennrouter" },
-      inline = { adapter = "opennrouter" },
+      chat = { adapter = "openrouter" },
+      inline = { adapter = "openrouter" },
     },
   },
   keys = {
