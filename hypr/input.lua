@@ -1,6 +1,16 @@
 -- Keep only your personal input overrides here. Uncommented settings below
 -- replace Omarchy's defaults.
 
+-- US international layout (restored from the Omarchy 3 config). Everything
+-- else (repeat_rate, repeat_delay, numlock, touchpad) keeps the new defaults.
+hl.config({
+  input = {
+    kb_layout = "us",
+    kb_variant = "intl",
+    kb_options = "compose:caps",
+  },
+})
+
 -- Keyboard layout and options.
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
 -- hl.config({
