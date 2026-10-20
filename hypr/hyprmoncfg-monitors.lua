@@ -6,7 +6,6 @@ hl.monitor({
   position = "0x0",
   scale = 1,
   vrr = 0,
-  bitdepth = 10,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
 })
@@ -14,10 +13,9 @@ hl.monitor({
 hl.monitor({
   output = "desc:LG Electronics LG ULTRAGEAR 309MAHUDZL25",
   mode = "2560x1440@143.97",
-  position = "1920x0",
-  scale = 1.33333,
+  position = "1920x-360",
+  scale = 1,
   vrr = 0,
-  bitdepth = 10,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
 })
