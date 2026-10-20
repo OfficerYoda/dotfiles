@@ -21,7 +21,7 @@
       ],
       "left": [
         {
-          "id": "omarchy.menu"
+          "id": "officeryoda.menu"
         },
         {
           "id": "officeryoda.workspaces"
@@ -32,7 +32,7 @@
           "id": "omarchy.tray"
         },
         {
-          "id": "crmne.hyprmoncfg"
+          "id": "omaplug"
         },
         {
           "id": "omarchy.tailscale"
@@ -57,16 +57,21 @@
       "id": "officeryoda.image-picker"
     },
     {
-      "id": "io.github.sirjul1337.lock-explorer"
+      "id": "io.github.sirjul1337.lock-explorer",
+      "tourSeen": true,
+      "openAs": "panel",
+      "design": "poster"
     }
   ],
   "version": 1,
   "disabledPlugins": [
     "omarchy.image-picker",
-    "omarchy.lock"
+    "omarchy.lock",
+    "omarchy.menu"
   ],
   "cloneSourceRestores": [
     "officeryoda.image-picker",
-    "io.github.sirjul1337.lock-explorer"
+    "io.github.sirjul1337.lock-explorer",
+    "officeryoda.menu"
   ]
 }
