@@ -17,6 +17,7 @@
 !skills/
 !lazygit/
 !omarchy/
+!xdg-desktop-portal/
 
 # Except these files
 !.gitignore
