@@ -64,17 +64,22 @@
       "tourSeen": true,
       "openAs": "panel",
       "design": "poster"
+    },
+    {
+      "id": "officeryoda.background"
     }
   ],
   "version": 1,
   "disabledPlugins": [
     "omarchy.image-picker",
     "omarchy.lock",
-    "omarchy.menu"
+    "omarchy.menu",
+    "omarchy.background"
   ],
   "cloneSourceRestores": [
     "officeryoda.image-picker",
     "io.github.sirjul1337.lock-explorer",
-    "officeryoda.menu"
+    "officeryoda.menu",
+    "officeryoda.background"
   ]
 }
