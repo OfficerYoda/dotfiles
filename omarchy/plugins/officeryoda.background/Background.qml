@@ -205,10 +205,15 @@ Item {
       property bool maskReady: false
 
       function maybeStartReveal() {
-        if (!root.incomingBackground || root.revealProgress !== 0 || maskReady) return
+        // Deliberately no revealProgress check: a screen whose images only
+        // finish loading mid-wipe must still set maskReady and join the shared
+        // animation, otherwise only the screen that won the load race would
+        // visibly reveal and the rest would snap at the end. startReveal()
+        // dedupes the animation itself via revealStartedVersion.
+        if (!root.incomingBackground || maskReady) return
         if (incomingFrame.status !== Image.Ready) return
         Qt.callLater(function() {
-          if (!root.incomingBackground || root.revealProgress !== 0 || maskReady) return
+          if (!root.incomingBackground || maskReady) return
           if (incomingFrame.status !== Image.Ready) return
           root.startReveal(panel)
         })
@@ -307,6 +312,12 @@ Item {
         function onIncomingBackgroundChanged() {
           panel.maskReady = false
           panel.maybeStartReveal()
+        }
+        // onIncomingBackgroundChanged can fire before revealProgress is reset to
+        // 0, in which case the panel above is skipped for this cycle. Retry
+        // whenever the wipe resets so every screen joins its next reveal.
+        function onRevealProgressChanged() {
+          if (root.revealProgress === 0) panel.maybeStartReveal()
         }
       }
 
