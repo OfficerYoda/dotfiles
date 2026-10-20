@@ -124,6 +124,7 @@ abbr occ "opencode --continue"
 alias bat "bat -pP"
 alias cat bat
 alias pyright basedpyright
+alias pip uv pip
 
 alias decompress "tar -xzf"
 
