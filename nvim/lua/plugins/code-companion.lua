@@ -46,11 +46,21 @@ return {
             },
           })
         end,
+        openrouter = function()
+          return require("codecompanion.adapters").extend("openrouter", {
+            schema = {
+              model = {
+                default = "deepseek/deepseek-v4.1-flash",
+                version = "low",
+              },
+            },
+          })
+        end,
       },
     },
     interactions = {
-      chat = { adapter = "litellm" },
-      inline = { adapter = "litellm" },
+      chat = { adapter = "openrouter" },
+      inline = { adapter = "openrouter" },
     },
   },
   keys = {
