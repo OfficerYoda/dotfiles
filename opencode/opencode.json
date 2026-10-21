@@ -105,75 +105,6 @@
         }
       }
     },
-    // "hai-anthropic": {
-    //   "canonical": "anthropic",
-    //   "models": {
-    //     "claude-haiku-4-5": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 64000
-    //       },
-    //       "name": "Haiku 4.5"
-    //     },
-    //     "claude-opus-4-8": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       },
-    //       "name": "Opus 4.8"
-    //     },
-    //     "claude-opus-4-8[1m]": {
-    //       "limit": {
-    //         "context": 1000000,
-    //         "input": 1000000,
-    //         "output": 128000
-    //       },
-    //       "modelID": "claude-opus-4-8",
-    //       "name": "Opus 4.8 (1M context)"
-    //     },
-    //     "claude-sonnet-4-6": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       },
-    //       "name": "Sonnet 4.6"
-    //     },
-    //     "claude-sonnet-4-6[1m]": {
-    //       "limit": {
-    //         "context": 1000000,
-    //         "input": 1000000,
-    //         "output": 128000
-    //       },
-    //       "modelID": "claude-sonnet-4-6",
-    //       "name": "Sonnet 4.6 (1M context)"
-    //     }
-    //   },
-    //   "name": "HAI Anthropic",
-    //   "settings": {
-    //     "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-    //     "baseURL": "http://localhost:6655/anthropic/v1"
-    //   }
-    // },
-    // "hai-google": {
-    //   "canonical": "google",
-    //   "models": {
-    //     "gemini-3.8-flash": {
-    //       "limit": {
-    //         "context": 1000000,
-    //         "input": 1000000,
-    //         "output": 65536
-    //       }
-    //     }
-    //   },
-    //   "name": "HAI Gemini",
-    //   "settings": {
-    //     "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-    //     "baseURL": "http://localhost:6655/gemini/v1beta"
-    //   }
-    // },
     "hai-litellm": {
       "models": {
         "claude-haiku-4-5": {
@@ -245,63 +176,10 @@
       "name": "HAI LiteLLM",
       "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
-        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
+        "apiKey": "{env:HAI_PROXY_API_KEY}",
         "baseURL": "http://localhost:6655/litellm/v1"
       }
     }
-    // "hai-openai": {
-    //   "canonical": "openai",
-    //   "models": {
-    //     "gpt-5": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     },
-    //     "gpt-5.4": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     },
-    //     "gpt-5.5": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     },
-    //     "gpt-5.6-luna": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     },
-    //     "gpt-5.6-sol": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     },
-    //     "gpt-5.6-terra": {
-    //       "limit": {
-    //         "context": 200000,
-    //         "input": 200000,
-    //         "output": 128000
-    //       }
-    //     }
-    //   },
-    //   "name": "HAI OpenAI",
-    //   "settings": {
-    //     "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-    //     "baseURL": "http://localhost:6655/openai/v1",
-    //     "transport": "http"
-    //   }
-    // }
   },
   "agents": {
     "explore": {
