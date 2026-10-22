@@ -112,7 +112,7 @@ if test (uname) = Darwin # Darwin = macOS
     end
     # pnpm end
 
-    abbr ocq --set-cursor='%' 'opencode run --model anthropic/claude-sonnet-4-6 "%"'
+    abbr ocq --set-cursor='%' 'opencode run --model hai-anthropic/claude-sonnet-4-6 "%"'
 else # Linux
     abbr ff zen-browser
     abbr ocq --set-cursor='%' 'opencode run --model openrouter/deepseek/deepseek-v4.1-flash "%"'
