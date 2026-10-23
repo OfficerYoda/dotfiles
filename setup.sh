@@ -60,7 +60,7 @@ aarch64 | arm64)
   ;;
 esac
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.bun/bin:$HOME/.local/bin:$PATH"
 
 log_info "Starting VPS dotfiles setup..."
 echo ""
@@ -141,9 +141,9 @@ fi
 echo ""
 
 # ============================================================================
-# 6. Install Bat
+# 6. Install Bat and Eza
 # ============================================================================
-log_info "Step 6/18: Installing bat..."
+log_info "Step 6/18: Installing bat and eza..."
 sudo apt install -y bat
 
 # Create symlink if installed as 'batcat'
@@ -153,6 +153,18 @@ if command -v batcat &>/dev/null && ! command -v bat &>/dev/null; then
   log_success "Bat installed and symlinked"
 else
   log_success "Bat installed"
+fi
+
+# Eza (fish's `ls` alias calls it; Ubuntu only ships it from 24.04 on, so use the
+# GitHub release — its arch triple is exactly YAZI_ARCH)
+if ! command -v eza &>/dev/null; then
+  curl -fsSL -o /tmp/eza.tar.gz "https://github.com/eza-community/eza/releases/latest/download/eza_${YAZI_ARCH}.tar.gz"
+  tar -C /tmp -xzf /tmp/eza.tar.gz eza
+  sudo install -m 755 /tmp/eza /usr/local/bin/eza
+  rm -f /tmp/eza.tar.gz /tmp/eza
+  log_success "Eza installed"
+else
+  log_warning "Eza already installed, skipping"
 fi
 echo ""
 
@@ -174,8 +186,6 @@ echo ""
 log_info "Step 8/18: Installing Bun..."
 if ! command -v bun &>/dev/null; then
   curl -fsSL https://bun.sh/install | bash
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
   log_success "Bun installed"
 else
   log_warning "Bun already installed, skipping"
@@ -381,7 +391,7 @@ echo ""
 echo "Installed tools:"
 echo "  • Core: fish, tmux, neovim, git, fzf, ripgrep, fd, btop"
 echo "  • Shell: starship, zoxide, bat, mise"
-echo "  • File management: yazi"
+echo "  • File management: yazi, eza"
 echo "  • Development: bun, lazygit, lazydocker"
 echo "  • Fun: asciiquarium, chafa, pigz"
 echo ""
