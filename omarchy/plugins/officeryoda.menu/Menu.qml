@@ -44,6 +44,22 @@ Item {
 
   function ping() { return "ok" }
 
+  function debugApps() {
+    var lib = root.appLibrary
+    var entry = root.item("apps")
+    var rows = lib ? lib.sortedEntries("") : []
+    return JSON.stringify({
+      hasShell: !!root.shell,
+      hasLibrary: !!lib,
+      appsEntryProvider: entry ? String(entry.provider || "") : "MISSING",
+      libraryCount: rows.length,
+      providersLoaded: root.providersLoaded["apps"] === true,
+      itemCount: root.itemOrder.length,
+      activeMenu: root.activeMenu,
+      isFirstParty: root.shell ? root.shell === root.shell : false
+    })
+  }
+
   property string fontFamily: Style.font.menuFamily
   // JSONC menu definitions. The shell parses both at startup and merges
   // the user file on top of the defaults, so the keybind → IPC → visible
