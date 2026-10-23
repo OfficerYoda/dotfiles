@@ -251,7 +251,7 @@ log_success "lazygit and lazydocker installed"
 echo ""
 
 # ============================================================================
-# 11. Install Optional/Fun Tools (pigz, chafa, asciiquarium)
+# 11. Install Optional Tools (pigz, chafa)
 # ============================================================================
 log_info "Step 11/18: Installing optional tools..."
 
@@ -260,21 +260,6 @@ sudo apt install -y pigz
 
 # Chafa
 sudo apt install -y chafa
-
-# Asciiquarium — non-fatal: a fun tool must not kill the setup
-log_info "Installing asciiquarium..."
-if command -v asciiquarium &>/dev/null; then
-  log_warning "asciiquarium already installed, skipping"
-elif sudo apt install -y libcurses-perl libterm-animation-perl &&
-  wget -q https://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz -O /tmp/asciiquarium.tar.gz &&
-  (cd /tmp && tar -zxf asciiquarium.tar.gz && cd asciiquarium* &&
-    sudo cp asciiquarium /usr/local/bin/ &&
-    sudo chmod +x /usr/local/bin/asciiquarium &&
-    rm -rf /tmp/asciiquarium.tar.gz /tmp/asciiquarium*); then
-  log_success "asciiquarium installed"
-else
-  log_warning "asciiquarium install failed (non-fatal), skipping"
-fi
 
 log_success "Optional tools installed"
 echo ""
@@ -393,21 +378,20 @@ echo "  • Core: fish, tmux, neovim, git, fzf, ripgrep, fd, btop"
 echo "  • Shell: starship, zoxide, bat, mise"
 echo "  • File management: yazi, eza"
 echo "  • Development: bun, lazygit, lazydocker"
-echo "  • Fun: asciiquarium, chafa, pigz"
+echo "  • Fun: chafa, pigz"
 echo ""
 echo "Useful commands:"
 echo "  • 'n' or 'nvim' - Open Neovim"
 echo "  • 'y' - Open Yazi file manager"
 echo "  • 'lazygit' or 'lg' - Git TUI"
-echo "  • 'lazydocker' - Docker TUI"
+echo "  • 'lazydocker' or 'ld' - Docker TUI"
 echo "  • 'btop' - System monitor"
 echo ""
 echo "Tmux key bindings (prefix: Ctrl+p):"
-echo "  • Ctrl+p then f - Fuzzy find projects"
-echo "  • Ctrl+p then g - Switch sessions"
-echo "  • Ctrl+p then b - Open btop"
-echo "  • Ctrl+p then v - Open lazydocker"
-echo "  • Ctrl+p then t - Open asciiquarium"
+echo "  • Ctrl+; then f - Fuzzy find projects"
+echo "  • Ctrl+; then g - Switch sessions"
+echo "  • Ctrl+; then b - Open btop"
+echo "  • Ctrl+; then v - Open lazydocker"
 echo ""
 log_warning "Please log out and log back in for all changes to take effect!"
 echo ""
