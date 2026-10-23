@@ -6,7 +6,7 @@
 # run it with:
 # curl -fsSL https://raw.githubusercontent.com/OfficerYoda/dotfiles/main/setup.sh | bash
 
-set -e  # Exit on any error
+set -e # Exit on any error
 
 # Colors for output
 RED='\033[0;31m'
@@ -17,43 +17,43 @@ NC='\033[0m' # No Color
 
 # Logging functions
 log_info() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+  echo -e "${BLUE}[INFO]${NC} $1"
 }
 
 log_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+  echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
 
 log_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+  echo -e "${YELLOW}[WARNING]${NC} $1"
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+  echo -e "${RED}[ERROR]${NC} $1"
 }
 
 # Check if running on Ubuntu/Debian
-if ! command -v apt &> /dev/null; then
-    log_error "This script is designed for Ubuntu/Debian systems with apt package manager"
-    exit 1
+if ! command -v apt &>/dev/null; then
+  log_error "This script is designed for Ubuntu/Debian systems with apt package manager"
+  exit 1
 fi
 
 # Architecture detection (x86_64 and ARM VPS both supported)
 case "$(uname -m)" in
-    x86_64)
-        YAZI_ARCH="x86_64-unknown-linux-gnu"
-        GH_ARCH="x86_64"
-        NVIM_ARCH="x86_64"
-        ;;
-    aarch64|arm64)
-        YAZI_ARCH="aarch64-unknown-linux-gnu"
-        GH_ARCH="arm64"
-        NVIM_ARCH="arm64"
-        ;;
-    *)
-        log_error "Unsupported architecture: $(uname -m)"
-        exit 1
-        ;;
+x86_64)
+  YAZI_ARCH="x86_64-unknown-linux-gnu"
+  GH_ARCH="x86_64"
+  NVIM_ARCH="x86_64"
+  ;;
+aarch64 | arm64)
+  YAZI_ARCH="aarch64-unknown-linux-gnu"
+  GH_ARCH="arm64"
+  NVIM_ARCH="arm64"
+  ;;
+*)
+  log_error "Unsupported architecture: $(uname -m)"
+  exit 1
+  ;;
 esac
 
 export PATH="$HOME/.local/bin:$PATH"
@@ -77,17 +77,17 @@ echo ""
 # ============================================================================
 log_info "Step 2/18: Cloning dotfiles repository..."
 if [ -d "$HOME/.config/.git" ]; then
-    log_warning "Dotfiles already cloned, pulling latest changes"
-    git -C "$HOME/.config" pull --ff-only || log_warning "Could not pull (local changes?), keeping existing clone"
-    log_success "Dotfiles up to date in ~/.config"
+  log_warning "Dotfiles already cloned, pulling latest changes"
+  git -C "$HOME/.config" pull --ff-only || log_warning "Could not pull (local changes?), keeping existing clone"
+  log_success "Dotfiles up to date in ~/.config"
 else
-    if [ -d "$HOME/.config" ]; then
-        BACKUP="$HOME/.config.backup.$(date +%Y%m%d_%H%M%S)"
-        mv "$HOME/.config" "$BACKUP"
-        log_warning "Existing ~/.config backed up to $(basename "$BACKUP")"
-    fi
-    git clone https://github.com/OfficerYoda/dotfiles.git "$HOME/.config"
-    log_success "Dotfiles cloned to ~/.config"
+  if [ -d "$HOME/.config" ]; then
+    BACKUP="$HOME/.config.backup.$(date +%Y%m%d_%H%M%S)"
+    mv "$HOME/.config" "$BACKUP"
+    log_warning "Existing ~/.config backed up to $(basename "$BACKUP")"
+  fi
+  git clone https://github.com/OfficerYoda/dotfiles.git "$HOME/.config"
+  log_success "Dotfiles cloned to ~/.config"
 fi
 echo ""
 
@@ -116,11 +116,11 @@ echo ""
 # 4. Install Starship Prompt
 # ============================================================================
 log_info "Step 4/18: Installing Starship prompt..."
-if ! command -v starship &> /dev/null; then
-    curl -fsSL https://starship.rs/install.sh | sh -s -- -y
-    log_success "Starship installed"
+if ! command -v starship &>/dev/null; then
+  curl -fsSL https://starship.rs/install.sh | sh -s -- -y
+  log_success "Starship installed"
 else
-    log_warning "Starship already installed, skipping"
+  log_warning "Starship already installed, skipping"
 fi
 echo ""
 
@@ -128,11 +128,11 @@ echo ""
 # 5. Install Zoxide
 # ============================================================================
 log_info "Step 5/18: Installing Zoxide..."
-if ! command -v zoxide &> /dev/null; then
-    curl -fsSL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-    log_success "Zoxide installed"
+if ! command -v zoxide &>/dev/null; then
+  curl -fsSL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  log_success "Zoxide installed"
 else
-    log_warning "Zoxide already installed, skipping"
+  log_warning "Zoxide already installed, skipping"
 fi
 echo ""
 
@@ -143,12 +143,12 @@ log_info "Step 6/18: Installing bat..."
 sudo apt install -y bat
 
 # Create symlink if installed as 'batcat'
-if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
-    mkdir -p ~/.local/bin
-    ln -sfn /usr/bin/batcat ~/.local/bin/bat
-    log_success "Bat installed and symlinked"
+if command -v batcat &>/dev/null && ! command -v bat &>/dev/null; then
+  mkdir -p ~/.local/bin
+  ln -sfn /usr/bin/batcat ~/.local/bin/bat
+  log_success "Bat installed and symlinked"
 else
-    log_success "Bat installed"
+  log_success "Bat installed"
 fi
 echo ""
 
@@ -156,11 +156,11 @@ echo ""
 # 7. Install Mise
 # ============================================================================
 log_info "Step 7/18: Installing Mise..."
-if ! command -v mise &> /dev/null; then
-    curl -fsSL https://mise.run | sh
-    log_success "Mise installed"
+if ! command -v mise &>/dev/null; then
+  curl -fsSL https://mise.run | sh
+  log_success "Mise installed"
 else
-    log_warning "Mise already installed, skipping"
+  log_warning "Mise already installed, skipping"
 fi
 echo ""
 
@@ -168,13 +168,13 @@ echo ""
 # 8. Install Bun
 # ============================================================================
 log_info "Step 8/18: Installing Bun..."
-if ! command -v bun &> /dev/null; then
-    curl -fsSL https://bun.sh/install | bash
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-    log_success "Bun installed"
+if ! command -v bun &>/dev/null; then
+  curl -fsSL https://bun.sh/install | bash
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+  log_success "Bun installed"
 else
-    log_warning "Bun already installed, skipping"
+  log_warning "Bun already installed, skipping"
 fi
 echo ""
 
@@ -182,15 +182,15 @@ echo ""
 # 9. Install Yazi
 # ============================================================================
 log_info "Step 9/18: Installing Yazi file manager..."
-if ! command -v yazi &> /dev/null; then
-    curl -fsSL -o yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${YAZI_ARCH}.zip"
-    unzip -q yazi.zip
-    sudo install -m 755 "yazi-${YAZI_ARCH}/yazi" /usr/local/bin/yazi
-    sudo install -m 755 "yazi-${YAZI_ARCH}/ya" /usr/local/bin/ya
-    rm -rf yazi.zip "yazi-${YAZI_ARCH}"
-    log_success "Yazi installed"
+if ! command -v yazi &>/dev/null; then
+  curl -fsSL -o yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${YAZI_ARCH}.zip"
+  unzip -q yazi.zip
+  sudo install -m 755 "yazi-${YAZI_ARCH}/yazi" /usr/local/bin/yazi
+  sudo install -m 755 "yazi-${YAZI_ARCH}/ya" /usr/local/bin/ya
+  rm -rf yazi.zip "yazi-${YAZI_ARCH}"
+  log_success "Yazi installed"
 else
-    log_warning "Yazi already installed, skipping"
+  log_warning "Yazi already installed, skipping"
 fi
 echo ""
 
@@ -201,28 +201,28 @@ log_info "Step 10/18: Installing lazygit and lazydocker..."
 
 # LazyGit
 log_info "Installing lazygit..."
-if ! command -v lazygit &> /dev/null; then
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -fsSL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${GH_ARCH}.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
-    rm lazygit.tar.gz lazygit
-    log_success "LazyGit installed"
+if ! command -v lazygit &>/dev/null; then
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -fsSL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${GH_ARCH}.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit /usr/local/bin
+  rm lazygit.tar.gz lazygit
+  log_success "LazyGit installed"
 else
-    log_warning "LazyGit already installed, skipping"
+  log_warning "LazyGit already installed, skipping"
 fi
 
 # LazyDocker
 log_info "Installing lazydocker..."
-if ! command -v lazydocker &> /dev/null; then
-    LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -fsSL -o lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_${GH_ARCH}.tar.gz"
-    tar xf lazydocker.tar.gz lazydocker
-    sudo install lazydocker /usr/local/bin
-    rm lazydocker.tar.gz lazydocker
-    log_success "LazyDocker installed"
+if ! command -v lazydocker &>/dev/null; then
+  LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -fsSL -o lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_${GH_ARCH}.tar.gz"
+  tar xf lazydocker.tar.gz lazydocker
+  sudo install lazydocker /usr/local/bin
+  rm lazydocker.tar.gz lazydocker
+  log_success "LazyDocker installed"
 else
-    log_warning "LazyDocker already installed, skipping"
+  log_warning "LazyDocker already installed, skipping"
 fi
 
 log_success "lazygit and lazydocker installed"
@@ -241,17 +241,17 @@ sudo apt install -y chafa
 
 # Asciiquarium — non-fatal: a fun tool must not kill the setup
 log_info "Installing asciiquarium..."
-if command -v asciiquarium &> /dev/null; then
-    log_warning "asciiquarium already installed, skipping"
-elif sudo apt install -y libcurses-perl libterm-animation-perl \
-     && wget -q https://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz -O /tmp/asciiquarium.tar.gz \
-     && (cd /tmp && tar -zxf asciiquarium.tar.gz && cd asciiquarium* \
-         && sudo cp asciiquarium /usr/local/bin/ \
-         && sudo chmod +x /usr/local/bin/asciiquarium \
-         && rm -rf /tmp/asciiquarium.tar.gz /tmp/asciiquarium*); then
-    log_success "asciiquarium installed"
+if command -v asciiquarium &>/dev/null; then
+  log_warning "asciiquarium already installed, skipping"
+elif sudo apt install -y libcurses-perl libterm-animation-perl &&
+  wget -q https://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz -O /tmp/asciiquarium.tar.gz &&
+  (cd /tmp && tar -zxf asciiquarium.tar.gz && cd asciiquarium* &&
+    sudo cp asciiquarium /usr/local/bin/ &&
+    sudo chmod +x /usr/local/bin/asciiquarium &&
+    rm -rf /tmp/asciiquarium.tar.gz /tmp/asciiquarium*); then
+  log_success "asciiquarium installed"
 else
-    log_warning "asciiquarium install failed (non-fatal), skipping"
+  log_warning "asciiquarium install failed (non-fatal), skipping"
 fi
 
 log_success "Optional tools installed"
@@ -262,10 +262,10 @@ echo ""
 # ============================================================================
 log_info "Step 12/18: Installing Tmux Plugin Manager..."
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-    log_success "TPM installed"
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+  log_success "TPM installed"
 else
-    log_warning "TPM already installed, skipping"
+  log_warning "TPM already installed, skipping"
 fi
 echo ""
 
@@ -274,8 +274,8 @@ echo ""
 # ============================================================================
 log_info "Step 13/18: Installing Tmux plugins..."
 if [ -d "$HOME/.tmux/plugins/tpm" ]; then
-    "$HOME/.tmux/plugins/tpm/bin/install_plugins"
-    log_success "Tmux plugins installed"
+  "$HOME/.tmux/plugins/tpm/bin/install_plugins"
+  log_success "Tmux plugins installed"
 fi
 echo ""
 
@@ -283,11 +283,11 @@ echo ""
 # 14. Install Yazi Plugins
 # ============================================================================
 log_info "Step 14/18: Installing Yazi plugins..."
-if command -v ya &> /dev/null; then
-    ya pack -i
-    log_success "Yazi plugins installed"
+if command -v ya &>/dev/null; then
+  ya pkg install
+  log_success "Yazi plugins installed"
 else
-    log_warning "Yazi CLI (ya) not found, skipping plugin installation"
+  log_warning "Yazi CLI (ya) not found, skipping plugin installation"
 fi
 echo ""
 
@@ -299,18 +299,18 @@ log_info "Step 15/18: Setting up Fish shell..."
 # Add fish to valid shells
 FISH_PATH=$(which fish)
 if ! grep -q "$FISH_PATH" /etc/shells; then
-    echo "$FISH_PATH" | sudo tee -a /etc/shells
-    log_success "Fish added to /etc/shells"
+  echo "$FISH_PATH" | sudo tee -a /etc/shells
+  log_success "Fish added to /etc/shells"
 fi
 
 # Change default shell (sudo chsh: plain chsh reads the password from stdin,
 # which is the script pipe when run via curl | bash)
 if [ "$SHELL" != "$FISH_PATH" ]; then
-    log_info "Changing default shell to Fish..."
-    sudo chsh -s "$FISH_PATH" "$USER"
-    log_success "Default shell changed to Fish"
+  log_info "Changing default shell to Fish..."
+  sudo chsh -s "$FISH_PATH" "$USER"
+  log_success "Default shell changed to Fish"
 else
-    log_warning "Fish is already the default shell"
+  log_warning "Fish is already the default shell"
 fi
 echo ""
 
@@ -330,13 +330,13 @@ log_info "Step 17/18: Installing Neovim..."
 NVIM_VERSION=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 CURRENT_NVIM=$(nvim --version 2>/dev/null | head -1 | grep -Po 'v\K[0-9.]+')
 if [ "$CURRENT_NVIM" != "$NVIM_VERSION" ]; then
-    curl -fsSL -o /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
-    sudo tar -C /opt -xzf /tmp/nvim.tar.gz
-    sudo ln -sfn "/opt/nvim-linux-${NVIM_ARCH}/bin/nvim" /usr/local/bin/nvim
-    rm /tmp/nvim.tar.gz
-    log_success "Neovim ${NVIM_VERSION} installed"
+  curl -fsSL -o /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
+  sudo tar -C /opt -xzf /tmp/nvim.tar.gz
+  sudo ln -sfn "/opt/nvim-linux-${NVIM_ARCH}/bin/nvim" /usr/local/bin/nvim
+  rm /tmp/nvim.tar.gz
+  log_success "Neovim ${NVIM_VERSION} installed"
 else
-    log_warning "Neovim ${NVIM_VERSION} already installed, skipping"
+  log_warning "Neovim ${NVIM_VERSION} already installed, skipping"
 fi
 log_info "Neovim plugins will be installed automatically on first run"
 echo ""
