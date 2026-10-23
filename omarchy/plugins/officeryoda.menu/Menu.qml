@@ -44,22 +44,6 @@ Item {
 
   function ping() { return "ok" }
 
-  function debugApps() {
-    var lib = root.appLibrary
-    var entry = root.item("apps")
-    var rows = lib ? lib.sortedEntries("") : []
-    return JSON.stringify({
-      hasShell: !!root.shell,
-      hasLibrary: !!lib,
-      appsEntryProvider: entry ? String(entry.provider || "") : "MISSING",
-      libraryCount: rows.length,
-      providersLoaded: root.providersLoaded["apps"] === true,
-      itemCount: root.itemOrder.length,
-      activeMenu: root.activeMenu,
-      isFirstParty: root.shell ? root.shell === root.shell : false
-    })
-  }
-
   property string fontFamily: Style.font.menuFamily
   // JSONC menu definitions. The shell parses both at startup and merges
   // the user file on top of the defaults, so the keybind → IPC → visible
@@ -98,7 +82,19 @@ Item {
 
   // Shared application engine (entries, hidden filters, icons, launch,
   // removal), owned by the shell and also used by the standalone launcher.
-  readonly property var appLibrary: root.shell ? root.shell.appLibrary : null
+  //
+  // Omarchy 4.0.6 fails to hand this capability to third-party menu plugins
+  // (the shell's panel loader passes the manifest through its model, so the
+  // "menu" kind is missed and appLibrary comes back null). Fall back to a
+  // local implementation built on DesktopEntries until the injected one
+  // exists again; see AppLibraryLocal.qml.
+  readonly property var appLibrary: root.shell && root.shell.appLibrary
+    ? root.shell.appLibrary : localAppLibrary
+
+  AppLibraryLocal {
+    id: localAppLibrary
+    omarchyPath: root.omarchyPath
+  }
   property bool deleteConfirmOpen: false
   property var deleteTarget: null
   onOpenedChanged: if (!opened) { deleteConfirmOpen = false; deleteTarget = null }
