@@ -32,6 +32,10 @@ log_error() {
   echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# make silent deaths loud: a failing command substitution under `set -e` kills the
+# script with no output otherwise (e.g. `X=$(cmd | grep ...)` when grep matches nothing)
+trap 'log_error "Failed at line $LINENO: $BASH_COMMAND"' ERR
+
 # Check if running on Ubuntu/Debian
 if ! command -v apt &>/dev/null; then
   log_error "This script is designed for Ubuntu/Debian systems with apt package manager"
@@ -202,12 +206,16 @@ log_info "Step 10/18: Installing lazygit and lazydocker..."
 # LazyGit
 log_info "Installing lazygit..."
 if ! command -v lazygit &>/dev/null; then
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  curl -fsSL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${GH_ARCH}.tar.gz"
-  tar xf lazygit.tar.gz lazygit
-  sudo install lazygit /usr/local/bin
-  rm lazygit.tar.gz lazygit
-  log_success "LazyGit installed"
+  LAZYGIT_VERSION=$(curl -fsSL "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || true)
+  if [ -z "$LAZYGIT_VERSION" ]; then
+    log_warning "Could not determine latest lazygit version (GitHub API), skipping — rerun later"
+  else
+    curl -fsSL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${GH_ARCH}.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm lazygit.tar.gz lazygit
+    log_success "LazyGit installed"
+  fi
 else
   log_warning "LazyGit already installed, skipping"
 fi
@@ -215,12 +223,16 @@ fi
 # LazyDocker
 log_info "Installing lazydocker..."
 if ! command -v lazydocker &>/dev/null; then
-  LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  curl -fsSL -o lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_${GH_ARCH}.tar.gz"
-  tar xf lazydocker.tar.gz lazydocker
-  sudo install lazydocker /usr/local/bin
-  rm lazydocker.tar.gz lazydocker
-  log_success "LazyDocker installed"
+  LAZYDOCKER_VERSION=$(curl -fsSL "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || true)
+  if [ -z "$LAZYDOCKER_VERSION" ]; then
+    log_warning "Could not determine latest lazydocker version (GitHub API), skipping — rerun later"
+  else
+    curl -fsSL -o lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_${GH_ARCH}.tar.gz"
+    tar xf lazydocker.tar.gz lazydocker
+    sudo install lazydocker /usr/local/bin
+    rm lazydocker.tar.gz lazydocker
+    log_success "LazyDocker installed"
+  fi
 else
   log_warning "LazyDocker already installed, skipping"
 fi
@@ -327,16 +339,17 @@ echo ""
 # 17. Install Neovim (GitHub release — apt's neovim is too old for LazyVim)
 # ============================================================================
 log_info "Step 17/18: Installing Neovim..."
-NVIM_VERSION=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-CURRENT_NVIM=$(nvim --version 2>/dev/null | head -1 | grep -Po 'v\K[0-9.]+')
-if [ "$CURRENT_NVIM" != "$NVIM_VERSION" ]; then
-  curl -fsSL -o /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
+# ponytail: /latest/download/ needs no GitHub API call (and can't die on rate limits
+# or an empty grep under `set -e`). Version check skipped: apt neovim is never
+# installed here, so an existing nvim already came from this script.
+if nvim --version >/dev/null 2>&1; then
+  log_warning "Neovim $(nvim --version | head -1) already installed, skipping"
+else
+  curl -fsSL -o /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-${NVIM_ARCH}.tar.gz"
   sudo tar -C /opt -xzf /tmp/nvim.tar.gz
   sudo ln -sfn "/opt/nvim-linux-${NVIM_ARCH}/bin/nvim" /usr/local/bin/nvim
   rm /tmp/nvim.tar.gz
-  log_success "Neovim ${NVIM_VERSION} installed"
-else
-  log_warning "Neovim ${NVIM_VERSION} already installed, skipping"
+  log_success "Neovim installed: $(nvim --version | head -1)"
 fi
 log_info "Neovim plugins will be installed automatically on first run"
 echo ""
