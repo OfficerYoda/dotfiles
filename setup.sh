@@ -38,13 +38,33 @@ if ! command -v apt &> /dev/null; then
     exit 1
 fi
 
+# Architecture detection (x86_64 and ARM VPS both supported)
+case "$(uname -m)" in
+    x86_64)
+        YAZI_ARCH="x86_64-unknown-linux-gnu"
+        GH_ARCH="x86_64"
+        NVIM_ARCH="x86_64"
+        ;;
+    aarch64|arm64)
+        YAZI_ARCH="aarch64-unknown-linux-gnu"
+        GH_ARCH="arm64"
+        NVIM_ARCH="arm64"
+        ;;
+    *)
+        log_error "Unsupported architecture: $(uname -m)"
+        exit 1
+        ;;
+esac
+
+export PATH="$HOME/.local/bin:$PATH"
+
 log_info "Starting VPS dotfiles setup..."
 echo ""
 
 # ============================================================================
 # 1. System Update & Basic Dependencies
 # ============================================================================
-log_info "Step 1/17: Updating system and installing basic dependencies..."
+log_info "Step 1/18: Updating system and installing basic dependencies..."
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y curl wget git build-essential unzip ca-certificates
@@ -52,13 +72,32 @@ log_success "System updated and basic dependencies installed"
 echo ""
 
 # ============================================================================
-# 2. Install Core CLI Tools
+# 2. Clone Dotfiles Repository (first thing after git exists, so the
+#    dotfiles land even if a later install step fails)
 # ============================================================================
-log_info "Step 2/17: Installing core CLI tools from apt..."
+log_info "Step 2/18: Cloning dotfiles repository..."
+if [ -d "$HOME/.config/.git" ]; then
+    log_warning "Dotfiles already cloned, pulling latest changes"
+    git -C "$HOME/.config" pull --ff-only || log_warning "Could not pull (local changes?), keeping existing clone"
+    log_success "Dotfiles up to date in ~/.config"
+else
+    if [ -d "$HOME/.config" ]; then
+        BACKUP="$HOME/.config.backup.$(date +%Y%m%d_%H%M%S)"
+        mv "$HOME/.config" "$BACKUP"
+        log_warning "Existing ~/.config backed up to $(basename "$BACKUP")"
+    fi
+    git clone https://github.com/OfficerYoda/dotfiles.git "$HOME/.config"
+    log_success "Dotfiles cloned to ~/.config"
+fi
+echo ""
+
+# ============================================================================
+# 3. Install Core CLI Tools
+# ============================================================================
+log_info "Step 3/18: Installing core CLI tools from apt..."
 sudo apt install -y \
   fish \
   tmux \
-  neovim \
   fzf \
   ripgrep \
   fd-find \
@@ -68,15 +107,17 @@ sudo apt install -y \
   python3-venv \
   pipx \
   jq
+# Note: neovim is installed from a GitHub release in step 17 because apt's
+# version is too old for LazyVim
 log_success "Core CLI tools installed"
 echo ""
 
 # ============================================================================
-# 3. Install Starship Prompt
+# 4. Install Starship Prompt
 # ============================================================================
-log_info "Step 3/17: Installing Starship prompt..."
+log_info "Step 4/18: Installing Starship prompt..."
 if ! command -v starship &> /dev/null; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
+    curl -fsSL https://starship.rs/install.sh | sh -s -- -y
     log_success "Starship installed"
 else
     log_warning "Starship already installed, skipping"
@@ -84,11 +125,11 @@ fi
 echo ""
 
 # ============================================================================
-# 4. Install Zoxide
+# 5. Install Zoxide
 # ============================================================================
-log_info "Step 4/17: Installing Zoxide..."
+log_info "Step 5/18: Installing Zoxide..."
 if ! command -v zoxide &> /dev/null; then
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
     log_success "Zoxide installed"
 else
     log_warning "Zoxide already installed, skipping"
@@ -96,15 +137,15 @@ fi
 echo ""
 
 # ============================================================================
-# 5. Install Bat
+# 6. Install Bat
 # ============================================================================
-log_info "Step 5/17: Installing bat..."
+log_info "Step 6/18: Installing bat..."
 sudo apt install -y bat
 
 # Create symlink if installed as 'batcat'
 if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
     mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
+    ln -sfn /usr/bin/batcat ~/.local/bin/bat
     log_success "Bat installed and symlinked"
 else
     log_success "Bat installed"
@@ -112,12 +153,11 @@ fi
 echo ""
 
 # ============================================================================
-# 6. Install Mise
+# 7. Install Mise
 # ============================================================================
-log_info "Step 6/17: Installing Mise..."
+log_info "Step 7/18: Installing Mise..."
 if ! command -v mise &> /dev/null; then
-    curl https://mise.run | sh
-    export PATH="$HOME/.local/bin:$PATH"
+    curl -fsSL https://mise.run | sh
     log_success "Mise installed"
 else
     log_warning "Mise already installed, skipping"
@@ -125,26 +165,9 @@ fi
 echo ""
 
 # ============================================================================
-# 7. Install Yazi
-# ============================================================================
-log_info "Step 7/17: Installing Yazi file manager..."
-if ! command -v yazi &> /dev/null; then
-    YAZI_VERSION=$(curl -s "https://api.github.com/repos/sxyazi/yazi/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -sLo yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
-    unzip -q yazi.zip
-    sudo install -m 755 "yazi-x86_64-unknown-linux-gnu/yazi" /usr/local/bin/yazi
-    sudo install -m 755 "yazi-x86_64-unknown-linux-gnu/ya" /usr/local/bin/ya
-    rm -rf yazi.zip yazi-x86_64-unknown-linux-gnu
-    log_success "Yazi installed"
-else
-    log_warning "Yazi already installed, skipping"
-fi
-echo ""
-
-# ============================================================================
 # 8. Install Bun
 # ============================================================================
-log_info "Step 8/17: Installing Bun..."
+log_info "Step 8/18: Installing Bun..."
 if ! command -v bun &> /dev/null; then
     curl -fsSL https://bun.sh/install | bash
     export BUN_INSTALL="$HOME/.bun"
@@ -156,45 +179,31 @@ fi
 echo ""
 
 # ============================================================================
-# 9. Install Optional/Fun Tools
+# 9. Install Yazi
 # ============================================================================
-log_info "Step 9/17: Installing optional tools (pigz, chafa, asciiquarium, lazydocker, lazygit)..."
-
-# Pigz
-sudo apt install -y pigz
-
-# Chafa
-sudo apt install -y chafa
-
-# Asciiquarium
-log_info "Installing asciiquarium..."
-sudo apt install -y libcurses-perl libterm-animation-perl
-cd /tmp
-wget -q http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-tar -zxf asciiquarium.tar.gz
-cd asciiquarium_* 2>/dev/null || cd asciiquarium
-sudo cp asciiquarium /usr/local/bin/
-sudo chmod +x /usr/local/bin/asciiquarium
-cd ~
-
-# LazyDocker
-log_info "Installing lazydocker..."
-if ! command -v lazydocker &> /dev/null; then
-    LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -sLo lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazydocker.tar.gz lazydocker
-    sudo install lazydocker /usr/local/bin
-    rm lazydocker.tar.gz lazydocker
-    log_success "LazyDocker installed"
+log_info "Step 9/18: Installing Yazi file manager..."
+if ! command -v yazi &> /dev/null; then
+    curl -fsSL -o yazi.zip "https://github.com/sxyazi/yazi/releases/latest/download/yazi-${YAZI_ARCH}.zip"
+    unzip -q yazi.zip
+    sudo install -m 755 "yazi-${YAZI_ARCH}/yazi" /usr/local/bin/yazi
+    sudo install -m 755 "yazi-${YAZI_ARCH}/ya" /usr/local/bin/ya
+    rm -rf yazi.zip "yazi-${YAZI_ARCH}"
+    log_success "Yazi installed"
 else
-    log_warning "LazyDocker already installed, skipping"
+    log_warning "Yazi already installed, skipping"
 fi
+echo ""
+
+# ============================================================================
+# 10. Install LazyGit and LazyDocker
+# ============================================================================
+log_info "Step 10/18: Installing lazygit and lazydocker..."
 
 # LazyGit
 log_info "Installing lazygit..."
 if ! command -v lazygit &> /dev/null; then
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -sLo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    curl -fsSL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_${GH_ARCH}.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit /usr/local/bin
     rm lazygit.tar.gz lazygit
@@ -203,35 +212,55 @@ else
     log_warning "LazyGit already installed, skipping"
 fi
 
+# LazyDocker
+log_info "Installing lazydocker..."
+if ! command -v lazydocker &> /dev/null; then
+    LAZYDOCKER_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazydocker/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -fsSL -o lazydocker.tar.gz "https://github.com/jesseduffield/lazydocker/releases/latest/download/lazydocker_${LAZYDOCKER_VERSION}_Linux_${GH_ARCH}.tar.gz"
+    tar xf lazydocker.tar.gz lazydocker
+    sudo install lazydocker /usr/local/bin
+    rm lazydocker.tar.gz lazydocker
+    log_success "LazyDocker installed"
+else
+    log_warning "LazyDocker already installed, skipping"
+fi
+
+log_success "lazygit and lazydocker installed"
+echo ""
+
+# ============================================================================
+# 11. Install Optional/Fun Tools (pigz, chafa, asciiquarium)
+# ============================================================================
+log_info "Step 11/18: Installing optional tools..."
+
+# Pigz
+sudo apt install -y pigz
+
+# Chafa
+sudo apt install -y chafa
+
+# Asciiquarium — non-fatal: a fun tool must not kill the setup
+log_info "Installing asciiquarium..."
+if command -v asciiquarium &> /dev/null; then
+    log_warning "asciiquarium already installed, skipping"
+elif sudo apt install -y libcurses-perl libterm-animation-perl \
+     && wget -q https://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz -O /tmp/asciiquarium.tar.gz \
+     && (cd /tmp && tar -zxf asciiquarium.tar.gz && cd asciiquarium* \
+         && sudo cp asciiquarium /usr/local/bin/ \
+         && sudo chmod +x /usr/local/bin/asciiquarium \
+         && rm -rf /tmp/asciiquarium.tar.gz /tmp/asciiquarium*); then
+    log_success "asciiquarium installed"
+else
+    log_warning "asciiquarium install failed (non-fatal), skipping"
+fi
+
 log_success "Optional tools installed"
 echo ""
 
 # ============================================================================
-# 10. Clone Dotfiles Repository
+# 12. Install Tmux Plugin Manager (TPM)
 # ============================================================================
-log_info "Step 10/17: Cloning dotfiles repository..."
-
-# Backup existing .config if it exists
-if [ -d "$HOME/.config" ] && [ ! -d "$HOME/.config/.git" ]; then
-    log_warning "Backing up existing .config to .config.backup"
-    mv "$HOME/.config" "$HOME/.config.backup.$(date +%Y%m%d_%H%M%S)"
-fi
-
-# Clone or update dotfiles
-if [ ! -d "$HOME/.config/.git" ]; then
-    git clone https://github.com/OfficerYoda/dotfiles.git "$HOME/.config"
-    log_success "Dotfiles cloned to ~/.config"
-else
-    log_warning "Dotfiles already cloned, pulling latest changes"
-    cd "$HOME/.config"
-    git pull
-fi
-echo ""
-
-# ============================================================================
-# 11. Install Tmux Plugin Manager (TPM)
-# ============================================================================
-log_info "Step 11/17: Installing Tmux Plugin Manager..."
+log_info "Step 12/18: Installing Tmux Plugin Manager..."
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
     log_success "TPM installed"
@@ -241,9 +270,9 @@ fi
 echo ""
 
 # ============================================================================
-# 12. Install Tmux Plugins
+# 13. Install Tmux Plugins
 # ============================================================================
-log_info "Step 12/17: Installing Tmux plugins..."
+log_info "Step 13/18: Installing Tmux plugins..."
 if [ -d "$HOME/.tmux/plugins/tpm" ]; then
     "$HOME/.tmux/plugins/tpm/bin/install_plugins"
     log_success "Tmux plugins installed"
@@ -251,9 +280,9 @@ fi
 echo ""
 
 # ============================================================================
-# 13. Install Yazi Plugins
+# 14. Install Yazi Plugins
 # ============================================================================
-log_info "Step 13/17: Installing Yazi plugins..."
+log_info "Step 14/18: Installing Yazi plugins..."
 if command -v ya &> /dev/null; then
     ya pack -i
     log_success "Yazi plugins installed"
@@ -263,9 +292,9 @@ fi
 echo ""
 
 # ============================================================================
-# 14. Setup Fish Shell
+# 15. Setup Fish Shell
 # ============================================================================
-log_info "Step 14/17: Setting up Fish shell..."
+log_info "Step 15/18: Setting up Fish shell..."
 
 # Add fish to valid shells
 FISH_PATH=$(which fish)
@@ -274,10 +303,11 @@ if ! grep -q "$FISH_PATH" /etc/shells; then
     log_success "Fish added to /etc/shells"
 fi
 
-# Change default shell
+# Change default shell (sudo chsh: plain chsh reads the password from stdin,
+# which is the script pipe when run via curl | bash)
 if [ "$SHELL" != "$FISH_PATH" ]; then
-    log_info "Changing default shell to Fish (requires password)..."
-    chsh -s "$FISH_PATH"
+    log_info "Changing default shell to Fish..."
+    sudo chsh -s "$FISH_PATH" "$USER"
     log_success "Default shell changed to Fish"
 else
     log_warning "Fish is already the default shell"
@@ -285,27 +315,36 @@ fi
 echo ""
 
 # ============================================================================
-# 15. Initialize Fish Configuration
+# 16. Initialize Fish Configuration
 # ============================================================================
-log_info "Step 15/17: Initializing Fish configuration..."
+log_info "Step 16/18: Initializing Fish configuration..."
 # Fish will load config automatically on first run
 fish -c "echo 'Fish configuration loaded successfully'" 2>/dev/null || true
 log_success "Fish configuration initialized"
 echo ""
 
 # ============================================================================
-# 16. Setup Neovim
+# 17. Install Neovim (GitHub release — apt's neovim is too old for LazyVim)
 # ============================================================================
-log_info "Step 16/17: Setting up Neovim..."
+log_info "Step 17/18: Installing Neovim..."
+NVIM_VERSION=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+CURRENT_NVIM=$(nvim --version 2>/dev/null | head -1 | grep -Po 'v\K[0-9.]+')
+if [ "$CURRENT_NVIM" != "$NVIM_VERSION" ]; then
+    curl -fsSL -o /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${NVIM_ARCH}.tar.gz"
+    sudo tar -C /opt -xzf /tmp/nvim.tar.gz
+    sudo ln -sfn "/opt/nvim-linux-${NVIM_ARCH}/bin/nvim" /usr/local/bin/nvim
+    rm /tmp/nvim.tar.gz
+    log_success "Neovim ${NVIM_VERSION} installed"
+else
+    log_warning "Neovim ${NVIM_VERSION} already installed, skipping"
+fi
 log_info "Neovim plugins will be installed automatically on first run"
-log_info "You can verify by running: nvim and checking plugin installation"
-log_success "Neovim configuration ready"
 echo ""
 
 # ============================================================================
-# 17. Final Steps
+# 18. Final Steps
 # ============================================================================
-log_info "Step 17/17: Finalizing setup..."
+log_info "Step 18/18: Finalizing setup..."
 
 # Ensure ~/.local/bin is in PATH
 mkdir -p "$HOME/.local/bin"
