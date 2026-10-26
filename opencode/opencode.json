@@ -62,6 +62,11 @@
         "action": "provider.use",
         "effect": "allow",
         "resource": "openrouter"
+      },
+      {
+        "action": "provider.use",
+        "effect": "allow",
+        "resource": "hai-litellm"
       }
     ]
   },
@@ -106,9 +111,244 @@
         "claude-opus-4-8": {
           "limit": {
             "context": 1000000,
+            "output": 128000,
+            "input": 1000000
+          },
+          "name": "Opus 4.8"
+        },
+        "claude-sonnet-4-6": {
+          "limit": {
+            "context": 200000,
+            "output": 128000,
+            "input": 200000
+          },
+          "name": "Sonnet 4.6"
+        },
+        "claude-sonnet-4-6[1m]": {
+          "limit": {
+            "context": 1000000,
+            "output": 128000,
+            "input": 1000000
+          },
+          "modelID": "claude-sonnet-4-6",
+          "name": "Sonnet 4.6 (1M context)"
+        },
+        "claude-haiku-4-5": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 64000
+          },
+          "name": "Haiku 4.5"
+        },
+        "claude-opus-4-5": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 64000
+          },
+          "name": "Opus 4.5"
+        },
+        "claude-opus-4-6": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          },
+          "name": "Opus 4.6"
+        },
+        "claude-opus-4-7": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 128000
+          },
+          "name": "Opus 4.7"
+        },
+        "claude-sonnet-4-5": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 64000
+          },
+          "name": "Sonnet 4.5"
+        }
+      },
+      "name": "HAI Anthropic",
+      "settings": {
+        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
+        "baseURL": "http://localhost:6655/anthropic/v1"
+      }
+    },
+    "hai-google": {
+      "canonical": "google",
+      "models": {
+        "gemini-3.8-flash": {
+          "limit": {
+            "context": 1000000,
+            "output": 65536,
+            "input": 1000000
+          }
+        },
+        "gemini-2.5-flash": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 65536
+          }
+        },
+        "gemini-2.5-flash-lite": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 65535
+          }
+        },
+        "gemini-2.5-pro": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 65536
+          }
+        },
+        "gemini-3.1-flash-lite": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 65536
+          }
+        },
+        "gemini-3.5-flash": {
+          "limit": {
+            "context": 1000000,
+            "input": 1000000,
+            "output": 65536
+          }
+        }
+      },
+      "name": "HAI Gemini",
+      "settings": {
+        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
+        "baseURL": "http://localhost:6655/gemini/v1beta"
+      }
+    },
+    "hai-openai": {
+      "canonical": "openai",
+      "models": {
+        "gpt-6-luna": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000,
+            "input": 1050000
+          }
+        },
+        "gpt-6.1-sol": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000,
+            "input": 1050000
+          }
+        },
+        "gpt-5.6-terra": {
+          "limit": {
+            "context": 200000,
+            "output": 128000,
+            "input": 200000
+          }
+        },
+        "gpt-6-astra": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000,
+            "input": 1050000
+          }
+        },
+        "gpt-5": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          }
+        },
+        "gpt-5.4": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          }
+        },
+        "gpt-5.5": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          }
+        },
+        "gpt-5.6-luna": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          }
+        },
+        "gpt-5.6-sol": {
+          "limit": {
+            "context": 200000,
+            "input": 200000,
+            "output": 128000
+          }
+        }
+      },
+      "name": "HAI OpenAI",
+      "settings": {
+        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
+        "baseURL": "http://localhost:6655/openai/v1",
+        "transport": "http"
+      }
+    },
+    "hai-litellm": {
+      "models": {
+        "claude-haiku-4-5": {
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "name": "Haiku 4.5"
+        },
+        "claude-opus-4-5": {
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "name": "Opus 4.5"
+        },
+        "claude-opus-4-6": {
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "name": "Opus 4.6"
+        },
+        "claude-opus-4-7": {
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "name": "Opus 4.7"
+        },
+        "claude-opus-4-8": {
+          "limit": {
+            "context": 1000000,
             "output": 128000
           },
           "name": "Opus 4.8"
+        },
+        "claude-sonnet-4-5": {
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "name": "Sonnet 4.5"
         },
         "claude-sonnet-4-6": {
           "limit": {
@@ -124,34 +364,91 @@
           },
           "modelID": "claude-sonnet-4-6",
           "name": "Sonnet 4.6 (1M context)"
-        }
-      },
-      "name": "HAI Anthropic",
-      "settings": {
-        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-        "baseURL": "http://localhost:6655/anthropic/v1"
-      }
-    },
-    "hai-google": {
-      "canonical": "google",
-      "models": {
+        },
+        "gemini-2.5-flash": {
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "name": "Gemini 2.5 Flash"
+        },
+        "gemini-2.5-flash-lite": {
+          "limit": {
+            "context": 1000000,
+            "output": 65535
+          },
+          "name": "Gemini 2.5 Flash Lite"
+        },
+        "gemini-2.5-pro": {
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "name": "Gemini 2.5 Pro"
+        },
+        "gemini-3.1-flash-lite": {
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "name": "Gemini 3.1 Flash Lite"
+        },
+        "gemini-3.5-flash": {
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "name": "Gemini 3.5 Flash"
+        },
         "gemini-3.8-flash": {
           "limit": {
             "context": 1000000,
             "output": 65536
           },
           "name": "Gemini 3.8 Flash"
-        }
-      },
-      "name": "HAI Gemini",
-      "settings": {
-        "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-        "baseURL": "http://localhost:6655/gemini/v1beta"
-      }
-    },
-    "hai-openai": {
-      "canonical": "openai",
-      "models": {
+        },
+        "gpt-4.1": {
+          "limit": {
+            "context": 200000,
+            "output": 32768
+          },
+          "name": "GPT-4.1"
+        },
+        "gpt-4.1-mini": {
+          "limit": {
+            "context": 200000,
+            "output": 32768
+          },
+          "name": "GPT-4.1 mini"
+        },
+        "gpt-5": {
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "name": "GPT-5"
+        },
+        "gpt-5-mini": {
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "name": "GPT-5 mini"
+        },
+        "gpt-5.4": {
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "name": "GPT-5.4"
+        },
+        "gpt-5.5": {
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          },
+          "name": "GPT-5.5"
+        },
         "gpt-5.6-luna": {
           "limit": {
             "context": 200000,
@@ -172,19 +469,40 @@
             "output": 128000
           },
           "name": "GPT-5.6 Terra"
+        },
+        "gpt-6-astra": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "name": "GPT-6 Astra"
+        },
+        "gpt-6-luna": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "name": "GPT-6 Luna"
+        },
+        "gpt-6.1-sol": {
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "name": "GPT-6.1 Sol"
         }
       },
-      "name": "HAI OpenAI",
+      "name": "HAI LiteLLM",
+      "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
         "apiKey": "40c0440f-16e2-4063-8518-9a8468e26f1a",
-        "baseURL": "http://localhost:6655/openai/v1",
-        "transport": "http"
+        "baseURL": "http://localhost:6655/litellm/v1"
       }
     }
   },
   "agents": {
     "explore": {
-      "model": "hai-openai/gpt-5.6-luna"
+      "model": "hai-openai/gpt-6-luna"
     },
     "general": {
       "permissions": [
@@ -196,14 +514,19 @@
       ]
     },
     "title": {
-      "model": "hai-openai/gpt-5.6-luna"
+      "model": "hai-openai/gpt-6-luna"
+    },
+    "plan": {
+      "model": "hai-openai/gpt-6.1-sol"
     }
   },
   "plugins": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
     "/Users/I767799/.config/opencode/plugins/rtk"
   ],
-  "skills": ["/Users/I767799/.config/skills/ponytail/skills"],
+  "skills": [
+    "/Users/I767799/.config/skills/ponytail/skills"
+  ],
   "mcp": {
     "servers": {
       "forgejo-mcp": {
@@ -226,5 +549,6 @@
       }
     }
   },
-  "websearch": false
+  "websearch": false,
+  "model": "hai-openai/gpt-6.1-sol"
 }
