@@ -191,7 +191,7 @@
   },
   "agents": {
     "explore": {
-      "model": "hai-openai/gpt-6-luna"
+      "model": "hai-openai/gpt-6-luna#medium"
     },
     "general": {
       "permissions": [
