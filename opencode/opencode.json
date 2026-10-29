@@ -229,9 +229,8 @@
       "openrouter": {
         "type": "remote",
         "url": "https://mcp.openrouter.ai/mcp",
-        "disabled": false
+        "disabled": true
       }
     }
-  },
-  "websearch": false
+  }
 }
