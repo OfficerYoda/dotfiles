@@ -20,6 +20,7 @@ return {
       "latex",
       "typst",
       "bibtex",
+      "odin",
     },
   },
 }
