@@ -1,5 +1,5 @@
 -- Copies reach the local Wayland clipboard and attached terminals. Reads use
--- Wayland or tmux's buffer, falling back to this Neovim's last copy. Never query
+-- macOS/Wayland or tmux's buffer, falling back to this Neovim's last copy. Never query
 -- the terminal with OSC 52: support for writes does not imply permission to read,
 -- and an unanswered query blocks ordinary paste for ten seconds. To insert new
 -- text from the host when no readable clipboard exists, use terminal paste.
@@ -54,6 +54,8 @@ function M.setup()
     and vim.fn.executable("wl-paste") == 1
 
   local has_tmux = in_tmux and vim.fn.executable("tmux") == 1
+  local has_macos_clipboard = not in_ssh and vim.fn.has("macunix") == 1
+    and vim.fn.executable("pbpaste") == 1
   local last_copy = {}
 
   local function tmux_export_enabled()
@@ -106,7 +108,10 @@ function M.setup()
       local cmd
       -- tmux's buffer is shared between Neovim instances on the server. Over
       -- SSH, prefer it to the remote machine's unrelated graphical clipboard.
-      if has_tmux and register == "+" and (in_ssh or not has_wayland)
+      if register == "+" and has_macos_clipboard then
+        -- tmux's buffer is not the macOS host clipboard.
+        cmd = { "pbpaste" }
+      elseif has_tmux and register == "+" and (in_ssh or not has_wayland)
         and vim.g.omarchy_remote_clipboard_osc52 ~= false then
         local buffers = vim.fn.systemlist({ "tmux", "display-message", "-p",
           "#{buffer_name}\n#{@omarchy-nvim-cleared-buffer}" })
