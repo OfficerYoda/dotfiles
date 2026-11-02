@@ -87,6 +87,7 @@ abbr d docker
 abbr doco "docker compose"
 abbr docu "docker compose up -d"
 abbr docd "docker compose down"
+abbr docp "docker compose pull"
 
 abbr g git
 abbr gcm "git commit -m"
