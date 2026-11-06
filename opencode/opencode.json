@@ -228,8 +228,14 @@
       },
       "openrouter": {
         "type": "remote",
-        "url": "https://mcp.openrouter.ai/mcp",
-        "disabled": true
+        "url": "https://mcp.openrouter.ai/mcp"
+      },
+      "gitlab": {
+        "type": "remote",
+        "url": "https://gitlab.com/api/v4/mcp",
+        "headers": {
+          "X-Gitlab-Enabled-Mcp-Server-Toolsets": "core,repository,work_items,merge_requests,ci,wikis"
+        }
       }
     }
   }
