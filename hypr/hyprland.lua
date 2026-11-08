@@ -28,5 +28,10 @@ require("default.hypr.toggles")
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
 
+-- Steam's main window should tile instead of floating. Omarchy's default app
+-- rule ($OMARCHY_PATH/default/hypr/apps/steam.lua) floats every "steam" window,
+-- and window rules are applied top to bottom with the last match winning.
+o.window({ class = "^steam$", title = "^Steam$" }, { float = false })
+
 -- Added by hyprmoncfg: its generated monitor rules load last, so nothing before this can override the applied layout.
 do local path = os.getenv("HOME") .. "/.config/hypr/hyprmoncfg-monitors.lua"; local file = io.open(path, "r"); if file then file:close(); dofile(path) end end

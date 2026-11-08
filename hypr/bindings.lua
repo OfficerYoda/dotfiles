@@ -54,3 +54,7 @@ o.bind("SUPER + ALT + J", "Toggle window split", hl.dsp.layout("togglesplit"))
 -- live here is still reachable from the Omarchy menu under Learn).
 hl.unbind("SUPER + ALT + K") -- was: Tmux keybindings
 o.bind("SUPER + ALT + K", "Keybindings", "omarchy-menu-keybindings")
+
+-- Open btop in a normal (tiled) terminal on SUPER + SHIFT + T.
+-- { tui = "btop" } would reuse Omarchy's floating org.omarchy.btop window instead.
+o.bind("SUPER + SHIFT + T", "btop", { launch = "xdg-terminal-exec -e btop" })
