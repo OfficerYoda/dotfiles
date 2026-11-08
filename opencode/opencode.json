@@ -41,6 +41,11 @@
       {
         "action": "provider.use",
         "effect": "allow",
+        "resource": "anthropic"
+      },
+      {
+        "action": "provider.use",
+        "effect": "allow",
         "resource": "hai-anthropic"
       },
       {
@@ -67,10 +72,10 @@
   },
   "providers": {
     "anthropic": {
-      "name": "HAI Anthropic",
+      "name": "Claude subscription proxy",
       "settings": {
-        "apiKey": "{env:HAI_PROXY_API_KEY}",
-        "baseURL": "http://localhost:6655/anthropic/v1"
+        "baseURL": "http://127.0.0.1:3456/v1",
+        "apiKey": "dummy"
       }
     },
     "google": {
@@ -208,7 +213,8 @@
   },
   "plugins": [
     "/Users/I767799/.config/skills/ponytail/.opencode/plugins/ponytail",
-    "/Users/I767799/.config/opencode/plugins/rtk"
+    "/Users/I767799/.config/opencode/plugins/rtk",
+    "file:///opt/homebrew/opt/opencode-with-claude/libexec/lib/node_modules/opencode-with-claude/dist/index.js"
   ],
   "skills": ["/Users/I767799/.config/skills/ponytail/skills"],
   "mcp": {

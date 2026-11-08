@@ -121,6 +121,7 @@ end
 
 abbr oc opencode
 abbr occ "opencode --continue"
+abbr cc claude
 
 alias bat "bat -pP"
 alias cat bat
