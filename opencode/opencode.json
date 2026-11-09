@@ -31,7 +31,7 @@
   "share": "disabled",
   "lsp": true,
   "experimental": {
-    "subagent_depth": 2,
+    "subagent_depth": 1,
     "policies": [
       {
         "action": "provider.use",
