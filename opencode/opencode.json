@@ -220,7 +220,6 @@
   "mcp": {
     "servers": {
       "forgejo-mcp": {
-        "disabled": false,
         "type": "remote",
         "url": "http://localhost:8677/mcp"
       },
@@ -242,6 +241,10 @@
         "headers": {
           "X-Gitlab-Enabled-Mcp-Server-Toolsets": "core,repository,work_items,merge_requests,ci,wikis"
         }
+      },
+      "hf-mcp-server": {
+        "type": "remote",
+        "url": "https://huggingface.co/mcp?login"
       }
     }
   }
