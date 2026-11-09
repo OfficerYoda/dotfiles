@@ -1,13 +1,17 @@
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
-  cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
+  -- cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
   ft = "markdown",
   opts = {
     workspaces = {
       {
         name = "jedi-archives",
         path = vim.fn.expand("~/Documents/vault"),
+      },
+      {
+        name = "house to datacenter",
+        path = vim.fn.expand("~/Documents/h2d"),
       },
     },
 
