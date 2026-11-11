@@ -20,10 +20,10 @@ return {
       sort = { "id", "created", "tags", "aliases", "moc" },
     },
     notes_subdir = "inbox",
-    new_notes_location = "inbox",
+    new_notes_location = "notes_subdir",
     ui = { enable = false }, -- make render-markdown render everything
     footer = { enabled = false },
-    picker = { name = "snacks.pick" },
+    picker = { name = "snacks.picker" },
     attachments = { folder = "attachments" },
 
     link = {
