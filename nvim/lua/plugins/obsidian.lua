@@ -1,13 +1,17 @@
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
-  cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
+  -- cond = vim.fn.getcwd():find(vim.fn.resolve(vim.fn.expand("~/Documents/vault")), 1, true) == 1,
   ft = "markdown",
   opts = {
     workspaces = {
       {
         name = "jedi-archives",
         path = vim.fn.expand("~/Documents/vault"),
+      },
+      {
+        name = "house to datacenter",
+        path = vim.fn.expand("~/Documents/h2d"),
       },
     },
 
@@ -16,10 +20,10 @@ return {
       sort = { "id", "created", "tags", "aliases", "moc" },
     },
     notes_subdir = "inbox",
-    new_notes_location = "inbox",
+    new_notes_location = "notes_subdir",
     ui = { enable = false }, -- make render-markdown render everything
     footer = { enabled = false },
-    picker = { name = "snacks.pick" },
+    picker = { name = "snacks.picker" },
     attachments = { folder = "attachments" },
 
     link = {
