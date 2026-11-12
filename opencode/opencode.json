@@ -245,6 +245,13 @@
       "hf-mcp-server": {
         "type": "remote",
         "url": "https://huggingface.co/mcp?login"
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "@playwright/mcp@latest"
+        ]
       }
     }
   }
