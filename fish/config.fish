@@ -52,8 +52,8 @@ if status is-interactive
         set -x FZF_DEFAULT_OPTS "--preview 'bat --style=numbers --color=always {}'"
     end
 
-    # Start in a tmux session inside the home directory if not already inside tmux
-    if command -v tmux >/dev/null && not set -q TMUX
+    # Start tmux for local shells only, if not already inside tmux
+    if command -v tmux >/dev/null && not set -q TMUX && not set -q SSH_CONNECTION && not set -q SSH_CLIENT
         if tmux has-session -t home 2>/dev/null
             tmux attach -t home
         else
