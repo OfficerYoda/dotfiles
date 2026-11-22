@@ -247,11 +247,9 @@
         "url": "https://huggingface.co/mcp?login"
       },
       "playwright": {
+        "disabled": true,
         "type": "local",
-        "command": [
-          "bunx",
-          "@playwright/mcp@latest"
-        ]
+        "command": ["bunx", "@playwright/mcp@latest"]
       }
     }
   }
