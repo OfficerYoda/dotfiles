@@ -250,6 +250,14 @@
         "disabled": true,
         "type": "local",
         "command": ["bunx", "@playwright/mcp@latest"]
+      },
+      "excel": {
+        "type": "local",
+        "command": [
+          "/opt/homebrew/bin/uvx",
+          "excel-mcp-server",
+          "stdio"
+        ]
       }
     }
   }
