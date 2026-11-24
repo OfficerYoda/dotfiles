@@ -9,6 +9,41 @@
           "verticalFormat": "HH\n—\nmm"
         }
       ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "centerEnd": [
+        {
+          "cities": [
+            {
+              "name": "Berlin",
+              "zone": "Europe/Berlin"
+            },
+            {
+              "name": "Dubai",
+              "zone": "Asia/Dubai"
+            },
+            {
+              "name": "Tokyo",
+              "zone": "Asia/Tokyo"
+            },
+            {
+              "name": "Los Angeles",
+              "zone": "America/Los_Angeles"
+            },
+            {
+              "name": "New York",
+              "zone": "America/New_York"
+            }
+          ],
+          "id": "omarchy.elsewhen"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
       "left": [
         {
           "id": "officeryoda.menu"
@@ -39,23 +74,23 @@
         {
           "id": "omarchy.audio"
         }
-      ],
-      "centerBegin": [
-        {
-          "id": "omarchy.indicators"
-        }
-      ],
-      "centerEnd": [
-        {
-          "id": "omarchy.elsewhen"
-        },
-        {
-          "id": "omarchy.system-update"
-        }
       ]
     },
     "position": "top",
     "transparent": false
+  },
+  "cloneSourceRestores": [
+    "officeryoda.image-picker",
+    "io.github.sirjul1337.lock-explorer",
+    "officeryoda.menu"
+  ],
+  "disabledPlugins": [
+    "omarchy.image-picker",
+    "omarchy.lock",
+    "omarchy.menu"
+  ],
+  "dock": {
+    "autohide": true
   },
   "idle": {
     "lock": 300,
@@ -66,21 +101,11 @@
       "id": "officeryoda.image-picker"
     },
     {
+      "design": "poster",
       "id": "io.github.sirjul1337.lock-explorer",
-      "tourSeen": true,
       "openAs": "panel",
-      "design": "poster"
+      "tourSeen": true
     }
   ],
-  "version": 1,
-  "disabledPlugins": [
-    "omarchy.image-picker",
-    "omarchy.lock",
-    "omarchy.menu"
-  ],
-  "cloneSourceRestores": [
-    "officeryoda.image-picker",
-    "io.github.sirjul1337.lock-explorer",
-    "officeryoda.menu"
-  ]
+  "version": 1
 }
