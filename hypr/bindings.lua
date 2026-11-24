@@ -45,7 +45,7 @@ o.bind("SUPER + SHIFT + L", "Swap window to the right", hl.dsp.window.swap({ dir
 
 -- Move the active workspace to the monitor on the left/right (restored).
 o.bind("SUPER + ALT + H", "Move workspace to left monitor", hl.dsp.workspace.move({ monitor = "l" }))
-o.bind("SUPER + ALT + L", "Move workspace to right monitor", hl.dsp.workspace.move({ monitor = "r" }))
+o.rebind("SUPER + ALT + L", "Move workspace to right monitor", hl.dsp.workspace.move({ monitor = "r" }))
 
 -- Toggle window split on SUPER + ALT + J.
 o.bind("SUPER + ALT + J", "Toggle window split", hl.dsp.layout("togglesplit"))
@@ -58,3 +58,13 @@ o.bind("SUPER + ALT + K", "Keybindings", "omarchy-menu-keybindings")
 -- Open btop in a normal (tiled) terminal on SUPER + SHIFT + T.
 -- { tui = "btop" } would reuse Omarchy's floating org.omarchy.btop window instead.
 o.bind("SUPER + SHIFT + T", "btop", { launch = "xdg-terminal-exec -e btop" })
+
+-- Cycle the shared workspace list, not only the focused monitor's list.
+o.rebind("SUPER + TAB", "Next workspace", hl.dsp.focus({ workspace = "e+1" }))
+o.rebind("SUPER + SHIFT + TAB", "Previous workspace", hl.dsp.focus({ workspace = "e-1" }))
+o.rebind("SUPER + CTRL + TAB", "Former workspace", hl.dsp.focus({ workspace = "previous" }))
+o.rebind("SUPER + mouse_down", "Scroll workspace forward", hl.dsp.focus({ workspace = "e+1" }))
+o.rebind("SUPER + mouse_up", "Scroll workspace backward", hl.dsp.focus({ workspace = "e-1" }))
+
+-- Without the dock, do not hide windows in its minimized workspace.
+hl.unbind("SUPER + M")

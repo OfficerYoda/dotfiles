@@ -85,6 +85,7 @@
     "officeryoda.menu"
   ],
   "disabledPlugins": [
+    "omarchy.dock",
     "omarchy.image-picker",
     "omarchy.lock",
     "omarchy.menu"
