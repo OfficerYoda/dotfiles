@@ -68,3 +68,6 @@ o.rebind("SUPER + mouse_up", "Scroll workspace backward", hl.dsp.focus({ workspa
 
 -- Without the dock, do not hide windows in its minimized workspace.
 hl.unbind("SUPER + M")
+
+-- Disable the default Obsidian shortcut.
+hl.unbind("SUPER + SHIFT + O")

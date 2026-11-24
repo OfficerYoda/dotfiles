@@ -1,0 +1,106 @@
+{
+  "bar": {
+    "layout": {
+      "center": [
+        {
+          "id": "omarchy.clock",
+          "format": "dddd h:mm AP",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "centerEnd": [
+        {
+          "id": "omarchy.elsewhen",
+          "cities": [
+            {
+              "name": "Berlin",
+              "zone": "Europe/Berlin",
+              "people": [
+                "SLR"
+              ]
+            },
+            {
+              "name": "Singapore",
+              "zone": "Asia/Singapore",
+              "lat": 1.28967,
+              "lon": 103.85007,
+              "region": "SG"
+            }
+          ]
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "left": [
+        {
+          "id": "officeryoda.menu"
+        },
+        {
+          "id": "officeryoda.workspaces"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "omaplug"
+        },
+        {
+          "id": "omarchy.tailscale"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.audio"
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": false
+  },
+  "cloneSourceRestores": [
+    "officeryoda.image-picker",
+    "io.github.sirjul1337.lock-explorer",
+    "officeryoda.menu"
+  ],
+  "disabledPlugins": [
+    "omarchy.dock",
+    "omarchy.image-picker",
+    "omarchy.lock",
+    "omarchy.menu"
+  ],
+  "dock": {
+    "autohide": true
+  },
+  "idle": {
+    "lock": 300,
+    "screensaver": 180
+  },
+  "plugins": [
+    {
+      "id": "officeryoda.image-picker"
+    },
+    {
+      "design": "poster",
+      "id": "io.github.sirjul1337.lock-explorer",
+      "openAs": "panel",
+      "tourSeen": true
+    }
+  ],
+  "version": 1
+}
