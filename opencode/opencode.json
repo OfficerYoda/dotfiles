@@ -71,13 +71,6 @@
     ]
   },
   "providers": {
-    "anthropic": {
-      "name": "Claude subscription proxy",
-      "settings": {
-        "baseURL": "http://127.0.0.1:3456/v1",
-        "apiKey": "dummy"
-      }
-    },
     "google": {
       "name": "HAI Gemini",
       "settings": {
@@ -253,11 +246,7 @@
       },
       "excel": {
         "type": "local",
-        "command": [
-          "/opt/homebrew/bin/uvx",
-          "excel-mcp-server",
-          "stdio"
-        ]
+        "command": ["/opt/homebrew/bin/uvx", "excel-mcp-server", "stdio"]
       }
     }
   }
